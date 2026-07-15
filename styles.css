@@ -1504,6 +1504,8 @@ iframe:focus-visible {
 
   .wedding-date {
     font-size: 1.75rem;
+    font-family: Georgia, serif;
+    font-variant-numeric: lining-nums;
   }
 
   .wedding-ceremony-time small,
@@ -1603,7 +1605,9 @@ iframe:focus-visible {
 
   .timeline-copy time {
     margin-bottom: 0.3rem;
+    font-family: Georgia, serif;
     font-size: 1.35rem;
+    font-variant-numeric: lining-nums;
   }
 
   .timeline-copy h3 {
