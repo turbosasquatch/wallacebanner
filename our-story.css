@@ -72,19 +72,16 @@
 }
 
 .story-scroll-cue {
-  display: grid;
-  width: 2.75rem;
-  height: 2.75rem;
-  margin-top: 0.65rem;
+  margin: 0.9rem auto 0;
+  border-color: rgba(250, 247, 241, 0.62);
   color: var(--paper);
-  place-items: center;
 }
 
 .story-scroll-cue span {
   position: relative;
   display: block;
-  width: 1rem;
-  height: 1.45rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .story-scroll-cue span::before,
@@ -95,20 +92,26 @@
 }
 
 .story-scroll-cue span::before {
-  bottom: 0;
-  width: 0.55rem;
-  height: 0.55rem;
+  bottom: 0.05rem;
+  width: 0.5rem;
+  height: 0.5rem;
   border-right: 1px solid currentColor;
   border-bottom: 1px solid currentColor;
   transform: translateX(-50%) rotate(45deg);
 }
 
 .story-scroll-cue span::after {
-  top: 0;
-  bottom: 0.2rem;
+  top: 0.05rem;
+  bottom: 0.15rem;
   width: 1px;
   background: currentColor;
   transform: translateX(-50%);
+}
+
+.story-scroll-cue:hover,
+.story-scroll-cue:focus-visible {
+  border-color: var(--coral);
+  color: var(--coral);
 }
 
 .story-timeline {
