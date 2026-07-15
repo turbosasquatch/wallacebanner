@@ -48,7 +48,12 @@
 }
 
 .engagement-kicker {
-  display: none;
+  display: block;
+  margin: 0 0 1.35rem;
+  color: var(--ink);
+  font: 500 0.72rem/1 var(--ui);
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
 }
 
 .engagement-hero h1 {
