@@ -902,6 +902,7 @@ iframe:focus-visible {
   color: var(--moss);
   background: var(--paper);
   font-size: 1.25rem;
+  line-height: 1;
 }
 
 .timeline-copy {
@@ -1583,7 +1584,6 @@ iframe:focus-visible {
     margin-top: 0.6rem;
     grid-column: 1;
     grid-row: 1;
-    color: var(--coral);
     font-size: 0.9rem;
   }
 
