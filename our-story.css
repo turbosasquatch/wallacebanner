@@ -19,7 +19,7 @@
 }
 
 .story-hero {
-  min-height: clamp(37rem, calc(100svh - 7rem), 47rem);
+  min-height: clamp(30rem, 70svh, 36rem);
   color: var(--paper);
   background: #4f5b45;
 }
@@ -29,14 +29,14 @@
   width: min(76rem, calc(100% - 6rem));
   min-height: inherit;
   margin: 0 auto;
-  padding: 3.5rem 1rem 0;
+  padding: 2.25rem 1rem 0;
   grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.82fr);
   align-items: center;
   gap: clamp(3rem, 7vw, 8rem);
 }
 
 .story-hero-copy {
-  padding-bottom: 4rem;
+  padding-bottom: 2rem;
 }
 
 .story-hero h1 {
@@ -64,11 +64,51 @@
 
 .story-hero-arch {
   width: min(30rem, 100%);
-  max-height: 36rem;
+  max-height: 31rem;
   align-self: end;
   justify-self: center;
   object-fit: contain;
   object-position: center bottom;
+}
+
+.story-scroll-cue {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-top: 0.65rem;
+  color: var(--paper);
+  place-items: center;
+}
+
+.story-scroll-cue span {
+  position: relative;
+  display: block;
+  width: 1rem;
+  height: 1.45rem;
+}
+
+.story-scroll-cue span::before,
+.story-scroll-cue span::after {
+  position: absolute;
+  left: 50%;
+  content: "";
+}
+
+.story-scroll-cue span::before {
+  bottom: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.story-scroll-cue span::after {
+  top: 0;
+  bottom: 0.2rem;
+  width: 1px;
+  background: currentColor;
+  transform: translateX(-50%);
 }
 
 .story-timeline {
@@ -214,12 +254,22 @@
 }
 
 .note-photo {
-  aspect-ratio: 1.45 / 1;
+  width: min(36rem, 100%);
+  justify-self: center;
   transform: rotate(0.8deg);
 }
 
-.note-photo img {
-  object-position: center;
+.note-photo-rotated {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.note-photo-rotated img {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .note-photo figcaption {
@@ -418,6 +468,11 @@
   scroll-snap-align: start;
 }
 
+.memory-viewport .carousel-slide {
+  height: clamp(17rem, 27vw, 24rem);
+  flex-basis: min(28rem, 36vw);
+}
+
 .gallery-viewport .carousel-slide {
   height: clamp(17rem, 27vw, 24rem);
   flex-basis: min(28rem, 36vw);
@@ -481,8 +536,10 @@
   position: absolute;
   top: 2.5rem;
   left: 50%;
-  width: min(42rem, 84vw);
+  width: auto;
   max-width: none;
+  height: min(36rem, 82%);
+  object-fit: contain;
   opacity: 0.42;
   transform: translateX(-50%);
 }
@@ -572,6 +629,7 @@
     flex-basis: min(36rem, 76vw);
   }
 
+  .memory-viewport .carousel-slide,
   .gallery-viewport .carousel-slide,
   .gallery-viewport .portrait-slide {
     flex-basis: min(27rem, 61vw);
@@ -674,14 +732,6 @@
     width: 54%;
   }
 
-  .note-photo {
-    aspect-ratio: auto;
-  }
-
-  .note-photo img {
-    height: auto;
-  }
-
   .paths-chapter {
     padding: 4rem 0;
   }
@@ -692,9 +742,7 @@
   }
 
   .paths-join {
-    width: 4rem;
-    height: 3.25rem;
-    margin: 0 auto;
+    display: none;
   }
 
   .tinder-photo {
@@ -765,7 +813,8 @@
 
   .story-closing > img {
     top: 2rem;
-    width: 31rem;
+    width: auto;
+    height: min(30rem, 82%);
   }
 
   .story-closing h2 {
