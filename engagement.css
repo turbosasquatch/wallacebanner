@@ -60,18 +60,20 @@
   line-height: 0.76;
 }
 
-.engagement-hero .floral-rule {
-  width: min(17rem, 72vw);
-  margin: clamp(2rem, 4vh, 2.8rem) auto 1.75rem;
+.engagement-divider {
+  display: block;
+  height: auto;
+  object-fit: contain;
 }
 
-.engagement-hero .floral-rule span {
-  width: 6.4rem;
+.engagement-divider-coral {
+  width: clamp(7.5rem, 11vw, 10rem);
+  margin: clamp(1.2rem, 2.2vh, 1.8rem) auto 0.85rem;
 }
 
-.engagement-hero .floral-rule b {
-  color: var(--coral);
-  font-size: 1.35rem;
+.engagement-divider-sage {
+  width: min(19rem, 70vw);
+  margin: 0.35rem auto 1.55rem;
 }
 
 .hero-event-details p {
@@ -121,6 +123,35 @@
 
 #engagement-details {
   scroll-margin-top: 1.5rem;
+}
+
+.card-icon-png {
+  display: block;
+  width: 6rem;
+  height: 6rem;
+  margin: -0.35rem auto 0;
+  object-fit: contain;
+}
+
+.engagement-page .information-card h2 {
+  margin-top: 0.9rem;
+}
+
+.event-note img {
+  display: block;
+  width: clamp(3.75rem, 7vw, 5.25rem);
+  height: auto;
+  flex: 0 0 auto;
+  opacity: 0.82;
+}
+
+.event-note span {
+  color: inherit;
+  font-style: inherit;
+}
+
+.event-note-sprig-right {
+  transform: scaleX(-1);
 }
 
 .engagement-stencil {
@@ -312,13 +343,10 @@
     line-height: 0.78;
   }
 
-  .engagement-hero .floral-rule {
-    width: min(13rem, 64vw);
-    margin: 2rem auto 1.75rem;
-  }
-
-  .engagement-hero .floral-rule span {
-    width: 4.5rem;
+  .engagement-divider-coral {
+    width: 8rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.8rem;
   }
 
   .event-date {
@@ -333,6 +361,19 @@
     width: 3.5rem;
     height: 3.5rem;
     margin-top: 1.5rem;
+  }
+
+  .card-icon-png {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  .event-note {
+    gap: 0.7rem;
+  }
+
+  .event-note img {
+    width: 3.5rem;
   }
 
   .engagement-stencil img {
