@@ -1210,6 +1210,7 @@ iframe:focus-visible {
   }
 
   .wedding-hero-sprig {
+    display: none;
     opacity: 0.7;
   }
 
