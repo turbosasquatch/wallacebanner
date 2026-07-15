@@ -916,6 +916,16 @@ iframe:focus-visible {
   margin-left: auto;
 }
 
+.timeline-aside {
+  display: block;
+  margin-top: 0.8rem;
+  color: var(--coral);
+  font-family: var(--display);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  font-style: italic;
+  line-height: 1.35;
+}
+
 .timeline-intro {
   margin-bottom: 0.35rem;
   font: 500 0.67rem/1.4 var(--ui);
@@ -1579,6 +1589,11 @@ iframe:focus-visible {
     margin: 0.85rem 0 0;
     font-size: 0.74rem;
     line-height: 1.7;
+  }
+
+  .timeline-aside {
+    margin-top: 0.65rem;
+    font-size: 1.05rem;
   }
 
   .timeline-event:nth-child(even) .timeline-copy small {
