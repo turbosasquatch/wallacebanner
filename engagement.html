@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Montserrat:wght@400;500&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=20260715-2">
+    <link rel="stylesheet" href="engagement.css?v=20260715-1">
   </head>
   <body class="event-page engagement-page">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -29,23 +30,29 @@
         <a href="wedding.html">Wedding</a>
         <a href="engagement.html" aria-current="page">Engagement</a>
       </nav>
+      <details class="mobile-nav">
+        <summary aria-label="Open navigation"><span></span><span></span></summary>
+        <nav aria-label="Mobile event pages">
+          <a href="index.html">Home</a>
+          <a href="wedding.html">Wedding</a>
+          <a href="engagement.html" aria-current="page">Engagement</a>
+        </nav>
+      </details>
     </header>
 
     <main id="main-content">
       <section class="engagement-hero" aria-labelledby="engagement-title">
         <div class="engagement-hero-copy">
+          <p class="engagement-kicker">You’re invited</p>
           <h1 id="engagement-title">Engagement<br>Party</h1>
           <div class="floral-rule" aria-hidden="true"><span></span><b>❧</b><span></span></div>
           <div class="hero-event-details">
             <p class="event-date">Saturday 1 August 2026</p>
             <p class="event-arrival">Arrive from 2 o’clock</p>
-            <span class="short-rule" aria-hidden="true"></span>
-            <p class="event-venue">Greenacres</p>
-            <p class="event-address">Burnham Road, Latchingdon, CM3 6HA</p>
           </div>
         </div>
-        <figure class="engagement-stencil">
-          <img src="assets/greenacres-stencil.jpg" alt="Line drawing of the Greenacres house and rear garden" width="1263" height="1673">
+        <figure class="engagement-stencil" aria-label="Line drawing of the Greenacres house and rear garden">
+          <img src="assets/greenacres-hero-sketch.jpg" alt="" width="1263" height="650">
         </figure>
       </section>
 

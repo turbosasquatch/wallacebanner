@@ -1,0 +1,298 @@
+/* Engagement hero — approved responsive concept */
+
+.engagement-page {
+  overflow-x: hidden;
+}
+
+.engagement-page .event-header {
+  min-height: 7rem;
+  padding: 0.75rem max(4vw, 2rem);
+}
+
+.engagement-page .header-mark {
+  width: 5.75rem;
+  height: 5.75rem;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+.engagement-hero {
+  position: relative;
+  display: grid;
+  min-height: clamp(44rem, calc(100svh - 7rem), 58rem);
+  overflow: hidden;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(27rem, 1fr) clamp(19rem, 34vw, 31rem);
+  background: var(--paper);
+  isolation: isolate;
+}
+
+.engagement-hero-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(52rem, calc(100% - 3rem));
+  min-height: 0;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vh, 5rem) 1.5rem 1.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.engagement-hero-copy::after {
+  display: none;
+}
+
+.engagement-kicker {
+  display: none;
+}
+
+.engagement-hero h1 {
+  margin: 0;
+  color: var(--moss);
+  font-size: clamp(5.8rem, 8.4vw, 8.4rem);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 0.76;
+}
+
+.engagement-hero .floral-rule {
+  width: min(17rem, 72vw);
+  margin: clamp(2rem, 4vh, 2.8rem) auto 1.75rem;
+}
+
+.engagement-hero .floral-rule span {
+  width: 6.4rem;
+}
+
+.engagement-hero .floral-rule b {
+  color: var(--coral);
+  font-size: 1.35rem;
+}
+
+.hero-event-details p {
+  margin: 0;
+}
+
+.event-date {
+  color: var(--ink);
+  font-size: clamp(1.8rem, 2.5vw, 2.35rem);
+  line-height: 1.1;
+}
+
+.event-arrival {
+  margin-top: 0.6rem !important;
+  color: var(--ink);
+  font: italic 400 clamp(1.15rem, 1.6vw, 1.45rem)/1.3 var(--display);
+}
+
+.engagement-stencil {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.engagement-stencil::before,
+.engagement-stencil::after {
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  content: "";
+  pointer-events: none;
+}
+
+.engagement-stencil::before {
+  top: 0;
+  height: 12%;
+  background: linear-gradient(to bottom, var(--paper), transparent);
+}
+
+.engagement-stencil::after {
+  bottom: 0;
+  height: 31%;
+  background: linear-gradient(to bottom, transparent, var(--paper) 92%);
+}
+
+.engagement-stencil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .engagement-page .event-header {
+    min-height: 6.5rem;
+  }
+
+  .engagement-hero {
+    min-height: clamp(45rem, calc(100svh - 6.5rem), 53rem);
+    grid-template-rows: minmax(30rem, 1fr) clamp(15rem, 42vw, 20rem);
+  }
+
+  .engagement-hero-copy {
+    min-height: 0;
+    padding: 3.5rem 1.25rem 1rem;
+  }
+
+  .engagement-hero h1 {
+    font-size: clamp(5rem, 13vw, 7rem);
+  }
+
+  .engagement-stencil {
+    height: 100%;
+  }
+
+  .engagement-stencil::after {
+    inset: auto 0 0;
+    width: auto;
+    height: 34%;
+    background: linear-gradient(to bottom, transparent, var(--paper) 94%);
+  }
+}
+
+@media (max-width: 640px) {
+  .engagement-page .event-header {
+    min-height: 7.25rem;
+    padding: 0.65rem 1.25rem;
+    justify-content: center;
+  }
+
+  .engagement-page .header-mark {
+    position: static;
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .engagement-page .site-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    position: absolute;
+    top: 50%;
+    right: 1.35rem;
+    display: block;
+    transform: translateY(-50%);
+  }
+
+  .mobile-nav summary {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.7rem 0.45rem;
+    cursor: pointer;
+    list-style: none;
+    place-content: center;
+    gap: 0.48rem;
+  }
+
+  .mobile-nav summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav summary span {
+    display: block;
+    width: 1.8rem;
+    height: 2px;
+    background: var(--moss);
+    transition: transform 180ms ease;
+  }
+
+  .mobile-nav[open] summary span:first-child {
+    transform: translateY(0.25rem) rotate(45deg);
+  }
+
+  .mobile-nav[open] summary span:last-child {
+    transform: translateY(-0.25rem) rotate(-45deg);
+  }
+
+  .mobile-nav nav {
+    position: absolute;
+    top: calc(100% + 0.75rem);
+    right: -0.6rem;
+    display: grid;
+    min-width: 12rem;
+    padding: 0.75rem 0;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    box-shadow: 0 0.8rem 2rem rgba(39, 51, 50, 0.1);
+  }
+
+  .mobile-nav nav a {
+    padding: 0.8rem 1.25rem;
+    font: 500 0.68rem/1 var(--ui);
+    letter-spacing: 0.13em;
+    text-align: right;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .mobile-nav nav a[aria-current="page"] {
+    color: var(--coral);
+  }
+
+  .engagement-hero {
+    min-height: clamp(43rem, calc(100svh - 7.25rem), 49rem);
+    grid-template-rows: minmax(30rem, 1fr) clamp(13rem, 58vw, 17rem);
+  }
+
+  .engagement-hero-copy {
+    width: 100%;
+    padding: clamp(3rem, 8vh, 4.4rem) 0.75rem 0.5rem;
+  }
+
+  .engagement-kicker {
+    display: block;
+    margin: 0 0 1.7rem;
+    font: 500 0.72rem/1 var(--ui);
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+  }
+
+  .engagement-hero h1 {
+    font-size: clamp(4rem, 18vw, 5.35rem);
+    line-height: 0.78;
+  }
+
+  .engagement-hero .floral-rule {
+    width: min(13rem, 64vw);
+    margin: 2rem auto 1.75rem;
+  }
+
+  .engagement-hero .floral-rule span {
+    width: 4.5rem;
+  }
+
+  .event-date {
+    font-size: clamp(1.65rem, 7.2vw, 2rem);
+  }
+
+  .event-arrival {
+    font-size: 1.14rem;
+  }
+
+  .engagement-stencil img {
+    width: 148%;
+    max-width: none;
+    height: 100%;
+    margin-left: -24%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-nav summary span {
+    transition: none;
+  }
+}
