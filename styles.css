@@ -852,6 +852,10 @@ iframe:focus-visible {
   object-position: center 46%;
 }
 
+.timeline-photo-ceremony img {
+  object-position: center bottom;
+}
+
 .timeline-photo-party img {
   object-position: center;
 }
@@ -919,7 +923,7 @@ iframe:focus-visible {
 .timeline-aside {
   display: block;
   margin-top: 0.8rem;
-  color: var(--coral);
+  color: inherit;
   font-family: var(--display);
   font-size: clamp(1rem, 1.4vw, 1.15rem);
   font-style: italic;
