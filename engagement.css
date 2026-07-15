@@ -21,10 +21,10 @@
 .engagement-hero {
   position: relative;
   display: grid;
-  min-height: clamp(44rem, calc(100svh - 7rem), 58rem);
+  min-height: 0;
   overflow: hidden;
   grid-template-columns: 1fr;
-  grid-template-rows: minmax(27rem, 1fr) clamp(19rem, 34vw, 31rem);
+  grid-template-rows: auto clamp(19rem, 34vw, 31rem);
   background: var(--paper);
   isolation: isolate;
 }
@@ -36,7 +36,7 @@
   width: min(52rem, calc(100% - 3rem));
   min-height: 0;
   margin: 0 auto;
-  padding: clamp(3rem, 6vh, 5rem) 1.5rem 1.5rem;
+  padding: clamp(2.5rem, 4vw, 3.75rem) 1.5rem clamp(1.25rem, 2vw, 2rem);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -108,6 +108,7 @@
   left: 0;
   z-index: 2;
   content: "";
+  display: none;
   pointer-events: none;
 }
 
@@ -129,6 +130,8 @@
   object-fit: cover;
   object-position: center top;
   transform: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 70%, transparent 100%);
 }
 
 @media (max-width: 900px) {
@@ -152,6 +155,16 @@
 
   .engagement-stencil {
     height: 100%;
+  }
+
+  .engagement-stencil::before,
+  .engagement-stencil::after {
+    display: block;
+  }
+
+  .engagement-stencil img {
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .engagement-stencil::after {
