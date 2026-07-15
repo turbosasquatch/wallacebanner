@@ -4,12 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#596549">
-    <meta name="description" content="The story of Claire and George.">
+    <meta name="description" content="The story of Claire and George, from primary school to their engagement at Alnwick Castle.">
     <title>Our Story | Claire &amp; George</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Montserrat:wght@400;500&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=20260715-6">
+    <link rel="stylesheet" href="engagement.css?v=20260715-7">
+    <link rel="stylesheet" href="our-story.css?v=20260715-1">
+    <script src="our-story.js?v=20260715-1" defer></script>
   </head>
   <body class="event-page story-page">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -20,29 +23,173 @@
       </a>
       <nav class="site-nav" aria-label="Event pages">
         <a href="index.html">Home</a>
-        <a href="wedding.html" aria-current="page">Wedding</a>
+        <a href="wedding.html">Wedding</a>
         <a href="engagement.html">Engagement</a>
       </nav>
+      <details class="mobile-nav">
+        <summary aria-label="Open navigation"><span></span><span></span></summary>
+        <nav aria-label="Mobile event pages">
+          <a href="index.html">Home</a>
+          <a href="wedding.html">Wedding</a>
+          <a href="engagement.html">Engagement</a>
+        </nav>
+      </details>
     </header>
 
-    <main id="main-content" class="story-page-main">
-      <section class="story-page-hero" aria-labelledby="story-title">
-        <div class="story-page-arch" aria-hidden="true">
-          <svg class="story-arch-lines" viewBox="0 0 400 520">
-            <path d="M20 500V200a180 180 0 0 1 360 0v300M48 500V200a152 152 0 0 1 304 0v300M0 500h400"/>
-            <path class="story-arch-ribs" d="M200 20v28M94 64l18 25M306 64l-18 25M40 151l31 9M360 151l-31 9"/>
-          </svg>
-          <div class="story-monogram"><span>G</span><b>&amp;</b><span>C</span></div>
+    <main id="main-content">
+      <section class="story-hero" aria-labelledby="story-title">
+        <div class="story-hero-inner">
+          <div class="story-hero-copy">
+            <h1 id="story-title">Our story</h1>
+            <p>A little look back at the moments<br>that brought us here.</p>
+            <span class="story-coral-rule" aria-hidden="true"></span>
+          </div>
+          <img class="story-hero-arch" src="assets/our-story-arch.png" alt="" width="1034" height="1400">
         </div>
-        <div class="story-page-copy">
-          <p class="story-kicker">Claire &amp; George</p>
-          <h1 id="story-title">Our story</h1>
-          <span class="coral-rule" aria-hidden="true"></span>
-          <p>We’re putting our story together and can’t wait to share it with you.</p>
-          <a class="story-link-button" href="wedding.html">
-            <svg class="story-link-arrow-back" viewBox="0 0 32 16" aria-hidden="true"><path d="M31 8H3M9 2 3 8l6 6"/></svg>
-            <span>Back to the wedding</span>
-          </a>
+      </section>
+
+      <div class="story-timeline">
+        <section class="story-chapter red-table" aria-labelledby="red-table-title">
+          <div class="chapter-grid story-container">
+            <div class="school-collage" aria-label="Primary school photographs of Claire and George">
+              <figure class="paper-photo school-photo-large">
+                <img src="assets/our-story/school-photo-1.jpeg" alt="Claire and George's primary school class in red and white uniforms" width="5712" height="4284">
+              </figure>
+              <figure class="paper-photo school-photo-small">
+                <img src="assets/our-story/school-photo-2.jpeg" alt="A second primary school group photograph of Claire and George's class" width="604" height="448">
+              </figure>
+            </div>
+            <div class="chapter-copy chapter-copy-right">
+              <p class="chapter-date">2007</p>
+              <h2 id="red-table-title">The Red Table</h2>
+              <span class="story-coral-rule" aria-hidden="true"></span>
+              <p>In 2007, Claire moved to Latchingdon C of E Primary School and joined George’s Year 4 class. By chance, they were seated at the same table—the Red Table.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="story-chapter note-chapter" aria-labelledby="note-title">
+          <div class="chapter-grid story-container">
+            <div class="chapter-copy">
+              <h2 id="note-title">A note for<br>the future</h2>
+              <span class="story-coral-rule" aria-hidden="true"></span>
+              <p>Two years later, George left Claire a lasting message in her Year 6 leavers’ book.</p>
+            </div>
+            <figure class="paper-photo note-photo">
+              <img src="assets/our-story/leavers-book.jpeg" alt="George's handwritten message in Claire's leavers' book: George and Claire ar cool beans" width="4032" height="3024" loading="lazy">
+              <figcaption>No, George still can’t spell!</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="paths-chapter" aria-labelledby="paths-title">
+          <div class="paths-inner story-container">
+            <div class="paths-heading">
+              <h2 id="paths-title">Different paths,<br>same place</h2>
+              <span class="story-coral-rule" aria-hidden="true"></span>
+            </div>
+            <div class="paths-copy">
+              <article>
+                <h3>George</h3>
+                <p>George headed to St Peter’s Secondary School before joining the family business.</p>
+              </article>
+              <span class="paths-join" aria-hidden="true"><i></i></span>
+              <article>
+                <h3>Claire</h3>
+                <p>Claire went to New Hall School, then the University of Edinburgh, where she trained as a veterinary surgeon.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="story-chapter tinder-chapter" aria-labelledby="tinder-title">
+          <div class="chapter-grid story-container">
+            <figure class="paper-photo tinder-photo">
+              <img src="assets/our-story/tinder-match.png" alt="Claire and George's Tinder conversation after matching in September 2024" width="1198" height="816" loading="lazy">
+            </figure>
+            <div class="chapter-copy chapter-copy-right">
+              <p class="chapter-date">2024</p>
+              <h2 id="tinder-title">They matched</h2>
+              <span class="story-coral-rule" aria-hidden="true"></span>
+              <p>In 2024, Claire and George matched on Tinder. One message later, it turned out George did remember Claire after all.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="carousel-chapter memory-chapter" aria-labelledby="first-date-title" data-carousel>
+          <div class="carousel-intro story-container">
+            <div class="chapter-copy">
+              <p class="chapter-date">The beginning</p>
+              <h2 id="first-date-title">The first date</h2>
+              <span class="story-coral-rule" aria-hidden="true"></span>
+              <p>Their first date was a dog walk in the park with George’s dog, Bruno. It was simple, relaxed—and the beginning of everything that followed.</p>
+            </div>
+            <div class="carousel-controls" aria-label="First date memories controls">
+              <button class="carousel-button carousel-previous" type="button" aria-label="Previous memory"></button>
+              <p class="carousel-count" aria-live="polite"><span data-current>01</span> / <span data-total>05</span></p>
+              <button class="carousel-button carousel-next" type="button" aria-label="Next memory"></button>
+            </div>
+          </div>
+          <div class="carousel-viewport memory-viewport" tabindex="0" aria-label="First date memories" data-track>
+            <figure class="carousel-slide paper-photo"><img src="assets/our-story/IMG_1979.jpeg" alt="Bruno resting on the sofa" width="4032" height="3024" loading="lazy"></figure>
+            <figure class="carousel-slide paper-photo"><img src="assets/our-story/IMG_0528.jpeg" alt="Claire and George together on a trip" width="4032" height="3024" loading="lazy"></figure>
+            <figure class="carousel-slide paper-photo"><img src="assets/our-story/IMG_1651.jpeg" alt="A country house visited by Claire and George" width="4032" height="3024" loading="lazy"></figure>
+            <figure class="carousel-slide paper-photo"><img src="assets/our-story/IMG_1652.jpeg" alt="The University of Edinburgh on a bright blue day" width="5712" height="4284" loading="lazy"></figure>
+            <figure class="carousel-slide paper-photo"><img src="assets/our-story/IMG_2106.jpeg" alt="George outdoors on a countryside trip" width="5712" height="4284" loading="lazy"></figure>
+          </div>
+        </section>
+
+        <section class="engagement-chapter" aria-labelledby="question-title">
+          <div class="engagement-story-grid story-container">
+            <div class="chapter-copy">
+              <p class="chapter-date">3 October 2025</p>
+              <h2 id="question-title">The question</h2>
+              <span class="story-coral-rule" aria-hidden="true"></span>
+              <p>While travelling north for a weekend in Edinburgh, George proposed at Alnwick Castle. Claire said yes.</p>
+            </div>
+            <figure class="paper-photo engagement-ring-photo">
+              <img src="assets/our-story/IMG_2601.jpeg" alt="Claire showing her engagement ring at Alnwick Castle" width="5712" height="4284" loading="lazy">
+            </figure>
+            <figure class="paper-photo engagement-hands-photo">
+              <img src="assets/our-story/IMG_2945.jpeg" alt="Claire and George's hands together after becoming engaged" width="3024" height="4032" loading="lazy">
+            </figure>
+            <figure class="castle-photo">
+              <img src="assets/our-story/Alnwick-Castle-Alnwick-Northumberland-England-UK.jpeg" alt="Alnwick Castle in Northumberland" width="1600" height="1033" loading="lazy">
+            </figure>
+          </div>
+        </section>
+
+        <section class="carousel-chapter gallery-chapter" aria-labelledby="since-title" data-carousel>
+          <div class="carousel-intro story-container">
+            <div class="chapter-copy">
+              <h2 id="since-title">Since then</h2>
+              <span class="story-coral-rule" aria-hidden="true"></span>
+              <p>Since then, life has been full of wedding plans, adventures and plenty more memories.</p>
+            </div>
+            <div class="carousel-controls" aria-label="Recent memories controls">
+              <button class="carousel-button carousel-previous" type="button" aria-label="Previous photograph"></button>
+              <p class="carousel-count" aria-live="polite"><span data-current>01</span> / <span data-total>08</span></p>
+              <button class="carousel-button carousel-next" type="button" aria-label="Next photograph"></button>
+            </div>
+          </div>
+          <div class="carousel-viewport gallery-viewport" tabindex="0" aria-label="Recent memories" data-track>
+            <figure class="carousel-slide paper-photo"><img src="assets/our-story/022b5a15-c161-459e-8e0d-4ebf6c6cb3d5.jpeg" alt="Claire and George enjoying drinks with friends" width="1600" height="1200" loading="lazy"></figure>
+            <figure class="carousel-slide paper-photo portrait-slide"><img src="assets/our-story/5a7c9c08-e1a2-4bfc-a397-f15b9b90ec5e.jpeg" alt="Claire and George together overlooking a city" width="1200" height="1600" loading="lazy"></figure>
+            <figure class="carousel-slide paper-photo portrait-slide"><img src="assets/our-story/IMG_1157.jpeg" alt="Claire and George at dinner" width="3024" height="4032" loading="lazy"></figure>
+            <figure class="carousel-slide paper-photo"><img src="assets/our-story/IMG_1687.jpeg" alt="Claire and George smiling together at an outdoor event" width="4032" height="3024" loading="lazy"></figure>
+            <figure class="carousel-slide paper-photo"><img src="assets/our-story/IMG_3142.jpeg" alt="Claire and George sharing a drink in the sunshine" width="4032" height="3024" loading="lazy"></figure>
+            <figure class="carousel-slide paper-photo"><img src="assets/our-story/IMG_3161.jpeg" alt="Claire and George together beneath a bright blue sky" width="4032" height="3024" loading="lazy"></figure>
+            <figure class="carousel-slide paper-photo portrait-slide"><img src="assets/our-story/c9e884d7-f679-489d-9258-707463e76131.jpeg" alt="Claire and George together on a high viewpoint" width="1200" height="1600" loading="lazy"></figure>
+            <figure class="carousel-slide paper-photo portrait-slide"><img src="assets/our-story/fd50d001-df49-482a-9eec-4d000d0dbf45.jpeg" alt="George with friends on a sunny day" width="1200" height="1600" loading="lazy"></figure>
+          </div>
+        </section>
+      </div>
+
+      <section class="story-closing" aria-labelledby="closing-title">
+        <img src="assets/our-story-arch.png" alt="" width="1034" height="1400" loading="lazy">
+        <div>
+          <h2 id="closing-title">We can’t wait to celebrate<br>the next chapter with you.</h2>
+          <span class="closing-flower" aria-hidden="true">✿</span>
         </div>
       </section>
     </main>
