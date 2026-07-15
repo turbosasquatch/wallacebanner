@@ -130,6 +130,10 @@
   scroll-margin-top: 1.5rem;
 }
 
+.engagement-page .food-photo img {
+  object-position: center 48%;
+}
+
 .card-icon-png {
   display: block;
   width: 6rem;
