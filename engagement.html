@@ -3,75 +3,106 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f8f4ec">
+    <meta name="theme-color" content="#faf7f1">
+    <meta name="description" content="Engagement party details for Claire and George at Greenacres, Latchingdon.">
     <title>Engagement Party | Claire &amp; George</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Montserrat:wght@400;500&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body class="event-page engagement-page">
     <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="icon-car" viewBox="0 0 32 32"><path d="M7 20v-5l3-7h12l3 7v5M5 17h22v8H5zM9 25v3M23 25v3M9 21h.01M23 21h.01M8 15h16"/></symbol>
+      <symbol id="icon-gift" viewBox="0 0 32 32"><path d="M5 13h22v15H5zM3 8h26v7H3zM16 8v20M16 8c-5 0-8-2-8-5 4-2 8 1 8 5zm0 0c5 0 8-2 8-5-4-2-8 1-8 5z"/></symbol>
+      <symbol id="icon-users" viewBox="0 0 32 32"><circle cx="11" cy="11" r="4"/><circle cx="23" cy="12" r="3"/><path d="M3 27c0-6 3-9 8-9s8 3 8 9M19 20c5-1 9 2 10 7"/></symbol>
+    </svg>
+
     <header class="site-header event-header" aria-label="Primary navigation">
       <a class="header-mark" href="index.html" aria-label="Claire and George — home">
-        <img src="assets/claire-george-mark.png" alt="" width="76" height="76">
+        <img src="assets/claire-george-mark.png" alt="" width="92" height="92">
       </a>
       <nav class="site-nav" aria-label="Event pages">
         <a href="index.html">Home</a>
         <a href="wedding.html">Wedding</a>
-        <a href="engagement.html" aria-current="page">Engagement<span class="nav-party"> Party</span></a>
+        <a href="engagement.html" aria-current="page">Engagement</a>
       </nav>
     </header>
 
-    <main id="main-content" class="event-content engagement-content">
-      <svg class="botanical-sprig coral" viewBox="0 0 68 34" aria-hidden="true">
-        <path class="sprig-stem" d="M5 28C22 26 39 17 54 5"/>
-        <ellipse cx="19" cy="24" rx="6" ry="2.7" transform="rotate(26 19 24)"/>
-        <ellipse cx="29" cy="20" rx="6" ry="2.7" transform="rotate(-48 29 20)"/>
-        <ellipse cx="39" cy="14" rx="6" ry="2.7" transform="rotate(20 39 14)"/>
-        <ellipse cx="50" cy="8" rx="5" ry="2.4" transform="rotate(-45 50 8)"/>
-      </svg>
-      <h1>Engagement Party</h1>
-      <div class="small-rule" aria-hidden="true"></div>
+    <main id="main-content">
+      <section class="engagement-hero" aria-labelledby="engagement-title">
+        <div class="engagement-hero-copy">
+          <h1 id="engagement-title">Engagement<br>Party</h1>
+          <div class="floral-rule" aria-hidden="true"><span></span><b>❧</b><span></span></div>
+          <div class="hero-event-details">
+            <p class="event-date">Saturday 1 August 2026</p>
+            <p class="event-arrival">Arrive from 2 o’clock</p>
+            <span class="short-rule" aria-hidden="true"></span>
+            <p class="event-venue">Greenacres</p>
+            <p class="event-address">Burnham Road, Latchingdon, CM3 6HA</p>
+          </div>
+        </div>
+        <figure class="engagement-stencil">
+          <img src="assets/greenacres-stencil.jpg" alt="Line drawing of the Greenacres house and rear garden" width="1263" height="1673">
+        </figure>
+      </section>
 
-      <div class="event-details engagement-details">
-        <div class="detail-row">
-          <svg class="detail-icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="7" width="22" height="20" rx="1"/><path d="M10 4v6M22 4v6M5 13h22M10 18h3M16 18h3M22 18h1M10 22h3M16 22h3"/></svg>
-          <p>Saturday 1 August 2026</p>
+      <section class="content-section food-feature" aria-labelledby="food-title">
+        <div class="food-copy">
+          <h2 id="food-title">Come hungry</h2>
+          <p>Barbecue serving time<br>to be confirmed</p>
+          <span class="short-rule" aria-hidden="true"></span>
+          <p class="supplier-credit">Barbecue by<br><a href="https://www.instagram.com/blokesbbqadventures/" target="_blank" rel="noopener noreferrer">BlokesBBQAdventures</a></p>
         </div>
-        <div class="detail-row">
-          <svg class="detail-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11"/><path d="M16 9v8l5 3"/></svg>
-          <p>Arrive from 2 o’clock<br>in the afternoon</p>
+        <a class="food-photo" href="https://www.instagram.com/blokesbbqadventures/" target="_blank" rel="noopener noreferrer" aria-label="Visit BlokesBBQAdventures on Instagram">
+          <img src="assets/blokes-bbq-ribs.jpg" alt="Barbecued ribs prepared by BlokesBBQAdventures" width="640" height="640">
+        </a>
+      </section>
+
+      <section class="content-section information-cards" aria-label="Engagement party information">
+        <article class="information-card">
+          <span class="round-icon" aria-hidden="true"><svg><use href="#icon-car"/></svg></span>
+          <h2>Parking</h2>
+          <p>Please share vehicles where practical.<br>Plenty of parking is available.</p>
+        </article>
+        <article class="information-card">
+          <span class="round-icon" aria-hidden="true"><svg><use href="#icon-gift"/></svg></span>
+          <h2>No gifts, please</h2>
+          <p>Your presence is what matters. If you would like to give something, please save it for the wedding.</p>
+        </article>
+        <article class="information-card">
+          <span class="round-icon" aria-hidden="true"><svg><use href="#icon-users"/></svg></span>
+          <h2>Plus ones</h2>
+          <p>Please check with Claire or George before bringing a plus one.</p>
+        </article>
+      </section>
+
+      <p class="event-note"><span aria-hidden="true">❧</span> Casual summer event; no dress code <span aria-hidden="true">❧</span></p>
+
+      <section class="content-section directions-section engagement-directions" aria-labelledby="engagement-directions-title">
+        <div class="section-heading">
+          <h2 id="engagement-directions-title">Finding Greenacres</h2>
+          <div class="floral-rule compact" aria-hidden="true"><span></span><b>❧</b><span></span></div>
         </div>
-        <div class="detail-row">
-          <svg class="detail-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 28s9-8.1 9-16a9 9 0 1 0-18 0c0 7.9 9 16 9 16z"/><circle cx="16" cy="12" r="3"/></svg>
-          <div>
-            <p>Greenacres</p>
-            <p class="detail-note upright address">Burnham Road, Latchingdon, CM3 6HA</p>
+        <div class="directions-grid">
+          <figure class="wayfinding-photo">
+            <img src="assets/greenacres-front.jpg" alt="The front of Greenacres, showing the grey house, gravel drive, lawn and hedge" width="1600" height="900" loading="lazy">
+            <figcaption>This is the house to look out for.</figcaption>
+          </figure>
+          <div class="map-panel">
+            <iframe title="Map showing Greenacres in Latchingdon" src="https://www.google.com/maps?q=Greenacres%2C%20Burnham%20Road%2C%20Latchingdon%2C%20CM3%206HA&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <a class="outline-button" href="https://www.google.com/maps/dir/?api=1&amp;destination=Greenacres%2C%20Burnham%20Road%2C%20Latchingdon%2C%20CM3%206HA" target="_blank" rel="noopener noreferrer">Get directions</a>
           </div>
         </div>
-        <div class="detail-separator" aria-hidden="true"></div>
-        <div class="detail-row">
-          <svg class="detail-icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="8" width="24" height="17" rx="1"/><path d="m5 10 11 8 11-8"/></svg>
-          <div>
-            <p>RSVP to Claire &amp; George</p>
-            <p class="detail-note upright"><a href="mailto:wallacebanner2024@gmail.com?subject=RSVP%20Engagement%20Party">wallacebanner2024@gmail.com</a></p>
-          </div>
-        </div>
-        <div class="detail-separator" aria-hidden="true"></div>
-        <div class="detail-row">
-          <svg class="detail-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4v10M5 4v6c0 3 6 3 6 0V4M8 14v14M21 4c-4 5-4 10 0 13v11M21 4v13M26 4v24"/></svg>
-          <p>Food and some drinks provided;<br>bring anything extra you would like to drink.</p>
-        </div>
-        <div class="detail-row">
-          <svg class="detail-icon" viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="13" width="22" height="15"/><path d="M3 9h26v6H3zM16 9v19M16 9c-5 0-8-2-8-5 4-2 8 1 8 5zm0 0c5 0 8-2 8-5-4-2-8 1-8 5z"/></svg>
-          <p>Please no gifts—<br>your attendance is plenty.</p>
-        </div>
-        <div class="detail-row">
-          <svg class="detail-icon" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="6"/><path d="M16 2v5M16 25v5M2 16h5M25 16h5M6 6l4 4M22 22l4 4M26 6l-4 4M10 22l-4 4"/></svg>
-          <p>Casual summer event;<br>no dress code.</p>
-        </div>
+      </section>
+
+      <div class="engagement-rsvp">
+        <a class="primary-button" href="mailto:wallacebanner2024@gmail.com?subject=RSVP%20Engagement%20Party">RSVP to Claire &amp; George</a>
       </div>
     </main>
+
+    <footer class="botanical-footer" aria-hidden="true"></footer>
   </body>
 </html>

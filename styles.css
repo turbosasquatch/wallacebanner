@@ -1,13 +1,15 @@
 :root {
-  --paper: #f8f4ec;
-  --ink: #263836;
-  --sage: #82957b;
-  --moss: #53684f;
-  --coral: #d98273;
-  --apricot: #e7b06e;
-  --rule: rgba(83, 104, 79, 0.42);
+  --paper: #faf7f1;
+  --paper-deep: #f4eee4;
+  --ink: #273332;
+  --moss: #596549;
+  --sage: #8f9a7e;
+  --soft-sage: #e8e7d9;
+  --coral: #e6816d;
+  --rule: #d8d0c2;
   --display: "Cormorant Garamond", Georgia, serif;
   --ui: "Montserrat", Arial, sans-serif;
+  --page: min(1180px, calc(100% - 64px));
 }
 
 * {
@@ -15,7 +17,9 @@
 }
 
 html {
+  min-width: 320px;
   min-height: 100%;
+  scroll-behavior: smooth;
   background: var(--paper);
   color-scheme: light;
 }
@@ -25,9 +29,14 @@ body {
   min-height: 100%;
   margin: 0;
   color: var(--ink);
-  background-color: var(--paper);
+  background: var(--paper);
   font-family: var(--display);
   -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }
 
 a {
@@ -38,8 +47,8 @@ a {
   position: fixed;
   top: 0.75rem;
   left: 0.75rem;
-  z-index: 20;
-  padding: 0.65rem 0.9rem;
+  z-index: 100;
+  padding: 0.7rem 0.95rem;
   color: var(--paper);
   background: var(--ink);
   font: 500 0.72rem/1 var(--ui);
@@ -57,24 +66,25 @@ a {
   position: relative;
   z-index: 10;
   display: flex;
+  width: 100%;
+  min-height: 7.75rem;
+  padding: 1rem max(4vw, 2rem);
   align-items: center;
-  justify-content: center;
-  min-height: 5.5rem;
-  padding: 1.1rem clamp(1.25rem, 4vw, 4rem);
+  justify-content: flex-end;
+  border-bottom: 1px solid rgba(89, 101, 73, 0.2);
+  background: rgba(250, 247, 241, 0.96);
 }
 
 .header-mark {
   position: absolute;
-  left: clamp(1rem, 4vw, 3.5rem);
-  display: none;
-  width: 4.25rem;
-  height: 4.25rem;
+  left: max(4vw, 2rem);
+  width: 6.25rem;
+  height: 6.25rem;
   border-radius: 50%;
   overflow: hidden;
 }
 
 .header-mark img {
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -83,15 +93,14 @@ a {
 .site-nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: clamp(1.5rem, 3.5vw, 3.25rem);
+  gap: clamp(2rem, 4vw, 4rem);
 }
 
 .site-nav a {
   position: relative;
   padding: 0.65rem 0 0.55rem;
-  font: 500 clamp(0.64rem, 0.75vw, 0.73rem)/1 var(--ui);
-  letter-spacing: 0.16em;
+  font: 500 0.72rem/1 var(--ui);
+  letter-spacing: 0.15em;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -103,7 +112,7 @@ a {
   left: 0;
   height: 1px;
   content: "";
-  background: var(--coral);
+  background: var(--moss);
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 180ms ease;
@@ -115,12 +124,15 @@ a {
   transform: scaleX(1);
 }
 
-.site-nav a:focus-visible,
-.event-choice:focus-visible,
-.detail-note a:focus-visible,
-.header-mark:focus-visible {
+.engagement-page .site-nav a[aria-current="page"] {
+  color: var(--coral);
+}
+
+a:focus-visible,
+button:focus-visible,
+iframe:focus-visible {
   outline: 2px solid var(--coral);
-  outline-offset: 5px;
+  outline-offset: 4px;
 }
 
 /* Home */
@@ -131,18 +143,15 @@ a {
 
 .home-shell {
   min-height: 100svh;
-  background-image: url("assets/garden-windows.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: url("assets/garden-windows.jpg") center / cover no-repeat;
 }
 
 .home-content {
   display: flex;
-  width: min(47rem, 60vw);
-  min-height: calc(100svh - 5.5rem);
+  width: min(47rem, 62vw);
+  min-height: calc(100svh - 7.75rem);
   margin: 0 auto;
-  padding: clamp(1rem, 2vh, 2rem) 1.5rem clamp(2.75rem, 6vh, 5.5rem);
+  padding: 2rem 1.5rem 4.5rem;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -151,10 +160,9 @@ a {
 }
 
 .hero-mark {
-  display: block;
   width: clamp(7.25rem, 10vw, 10rem);
   height: clamp(7.25rem, 10vw, 10rem);
-  margin-bottom: clamp(0.8rem, 1.5vh, 1.4rem);
+  margin-bottom: 1rem;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -191,7 +199,7 @@ a {
 }
 
 .announcement {
-  margin: clamp(1.15rem, 2.5vh, 2rem) 0 0;
+  margin: 1.6rem 0 0;
   font: 500 clamp(0.69rem, 0.9vw, 0.82rem)/1.4 var(--ui);
   letter-spacing: 0.34em;
   text-transform: uppercase;
@@ -200,11 +208,10 @@ a {
 .leaf-divider {
   display: flex;
   width: min(18rem, 70%);
-  margin: clamp(1.05rem, 2vh, 1.6rem) auto;
+  margin: 1.3rem auto;
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
-  color: var(--sage);
 }
 
 .leaf-divider > span {
@@ -214,25 +221,12 @@ a {
 }
 
 .leaf-divider img {
-  display: block;
   width: 6.4rem;
-  height: auto;
-}
-
-.botanical-sprig {
-  fill: currentColor;
-}
-
-.botanical-sprig .sprig-stem {
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-width: 1.4;
 }
 
 .choice-intro {
   display: flex;
-  margin: clamp(0.25rem, 1vh, 0.75rem) 0 clamp(1rem, 2vh, 1.5rem);
+  margin: 0.25rem 0 1.35rem;
   flex-direction: column;
   gap: 0.25rem;
   font: 500 0.7rem/1.4 var(--ui);
@@ -255,9 +249,9 @@ a {
 
 .event-choice {
   display: grid;
-  min-height: clamp(7.5rem, 15vh, 9.3rem);
+  min-height: 10rem;
   padding: 1rem;
-  border: 1px solid rgba(83, 104, 79, 0.58);
+  border: 1px solid rgba(89, 101, 73, 0.58);
   place-items: center;
   text-decoration: none;
   transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
@@ -265,14 +259,13 @@ a {
 
 .event-choice:hover {
   border-color: var(--coral);
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.35);
   transform: translateY(-3px);
 }
 
 .choice-sprig {
-  display: block;
-  width: 4.8rem;
-  height: 2.2rem;
+  width: 5.4rem;
+  height: 5rem;
   object-fit: contain;
 }
 
@@ -286,165 +279,609 @@ a {
 
 .choice-arrow {
   font-size: 1.35rem;
-  line-height: 1;
 }
 
-/* Event pages */
+/* Shared event-page system */
 
 .event-page {
-  min-height: 100svh;
-  background-color: var(--paper);
-  background-image: url("assets/botanical-border.jpg");
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
-
-.event-header {
-  background: linear-gradient(to bottom, rgba(248, 244, 236, 0.96), rgba(248, 244, 236, 0.78), transparent);
-}
-
-.event-content {
-  width: min(43rem, calc(100% - 2.5rem));
-  margin: 0 auto;
-  padding: clamp(1.5rem, 4vh, 3.5rem) clamp(1.5rem, 4vw, 3.5rem) clamp(9rem, 24vh, 16rem);
+  overflow-x: hidden;
   background: var(--paper);
-  box-shadow: 0 0 2.5rem 2rem var(--paper);
-  text-align: center;
-  animation: gentle-arrival 650ms ease-out both;
 }
 
-.event-content h1 {
-  max-width: 100%;
-  margin: 0;
-  font-size: clamp(2.6rem, 5vw, 4.5rem);
-  font-weight: 500;
-  letter-spacing: 0.09em;
-  line-height: 0.95;
-  text-transform: uppercase;
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
-.botanical-sprig {
-  display: block;
-  width: 4.5rem;
-  height: auto;
-  margin: 0 auto 0.85rem;
-  color: var(--sage);
+.content-section {
+  width: var(--page);
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.botanical-sprig.coral {
+.event-page h1,
+.event-page h2,
+.event-page p,
+.event-page figure {
+  margin-top: 0;
+}
+
+.event-page h1,
+.event-page h2 {
+  color: var(--moss);
+  font-weight: 400;
+}
+
+.floral-rule {
+  display: flex;
+  width: min(340px, 70%);
+  margin: 1.8rem auto 2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
   color: var(--coral);
 }
 
-.small-rule {
-  width: 2.75rem;
+.floral-rule span {
+  width: 7rem;
   height: 1px;
-  margin: 1.4rem auto clamp(2rem, 5vh, 3.8rem);
   background: var(--rule);
 }
 
-.event-details {
-  width: min(100%, 33rem);
-  margin: 0 auto;
+.floral-rule b {
+  font-size: 1.9rem;
+  font-weight: 400;
+  line-height: 1;
 }
 
-.detail-row {
-  display: grid;
-  grid-template-columns: 2.75rem minmax(0, 1fr);
-  gap: 1.15rem;
+.floral-rule.compact {
+  width: 220px;
+  margin: 0.65rem auto 1.8rem;
+}
+
+.floral-rule.compact span {
+  width: 4.2rem;
+}
+
+.floral-rule.compact b {
+  color: var(--sage);
+  font-size: 1.35rem;
+}
+
+.short-rule {
+  display: block;
+  width: 3.2rem;
+  height: 1px;
+  margin: 1.4rem auto;
+  background: var(--rule);
+}
+
+.primary-button,
+.outline-button {
+  display: inline-flex;
+  min-height: 3.85rem;
+  padding: 0.75rem 2rem;
   align-items: center;
-  min-height: 5.5rem;
-  text-align: left;
-}
-
-.detail-row p {
-  margin: 0;
-  font-size: clamp(1.18rem, 2.05vw, 1.62rem);
-  font-weight: 500;
-  letter-spacing: 0.055em;
-  line-height: 1.18;
+  justify-content: center;
+  gap: 0.65rem;
+  font: 500 0.76rem/1.2 var(--ui);
+  letter-spacing: 0.18em;
+  text-align: center;
+  text-decoration: none;
   text-transform: uppercase;
+  transition: color 180ms ease, background 180ms ease, transform 180ms ease;
 }
 
-.detail-icon {
-  width: 2.15rem;
-  height: 2.15rem;
+.primary-button {
+  color: #fff;
+  background: var(--moss);
+}
+
+.outline-button {
+  color: var(--ink);
+  border: 1px solid var(--moss);
+}
+
+.primary-button:hover,
+.outline-button:hover {
+  color: #fff;
+  background: var(--coral);
+  transform: translateY(-2px);
+}
+
+.section-heading {
+  text-align: center;
+}
+
+.section-heading h2,
+.directions-copy h2 {
+  margin-bottom: 0;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+.botanical-footer {
+  min-height: clamp(10rem, 23vw, 22rem);
+  margin-top: -2rem;
+  background: url("assets/botanical-border.jpg") center bottom / cover no-repeat;
+  pointer-events: none;
+}
+
+/* Engagement */
+
+.engagement-hero {
+  display: grid;
+  min-height: min(760px, calc(100svh - 7.75rem));
+  grid-template-columns: minmax(320px, 0.82fr) minmax(480px, 1.18fr);
+  background: var(--paper);
+}
+
+.engagement-hero-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  padding: clamp(3rem, 7vw, 7rem) 1rem 5rem max(5vw, 2rem);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.engagement-hero-copy::after {
+  position: absolute;
+  right: -9rem;
+  bottom: 0;
+  left: 0;
+  height: 13rem;
+  z-index: -1;
+  content: "";
+  background: url("assets/botanical-border.jpg") left bottom / 45rem auto no-repeat;
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.engagement-hero h1 {
+  margin: 0;
+  font-size: clamp(4rem, 7vw, 7.2rem);
+  letter-spacing: -0.02em;
+  line-height: 0.75;
+}
+
+.hero-event-details p {
+  margin-bottom: 0;
+}
+
+.event-date {
+  font-size: clamp(1.6rem, 2.5vw, 2.15rem);
+}
+
+.event-arrival {
+  margin-top: 0.65rem !important;
+  font: italic 400 clamp(1.15rem, 1.8vw, 1.45rem)/1.3 var(--display);
+}
+
+.event-venue {
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+}
+
+.event-address {
+  margin-top: 0.55rem !important;
+  font: 400 0.78rem/1.5 var(--ui);
+}
+
+.engagement-stencil {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.engagement-stencil::before {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  height: 18%;
+  content: "";
+  background: var(--paper);
+}
+
+.engagement-stencil::after {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 24%;
+  z-index: 2;
+  content: "";
+  background: linear-gradient(to right, var(--paper), transparent);
+}
+
+.engagement-stencil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  transform: scale(1.9);
+  transform-origin: center bottom;
+}
+
+.food-feature {
+  display: grid;
+  padding: clamp(4rem, 8vw, 7.5rem) 0 3.5rem;
+  grid-template-columns: 0.65fr 1.35fr;
+  gap: clamp(2.5rem, 7vw, 7rem);
+  align-items: center;
+}
+
+.food-copy {
+  text-align: center;
+}
+
+.food-copy h2 {
+  margin-bottom: 1rem;
+  font-size: clamp(2.8rem, 5vw, 4.6rem);
+  line-height: 0.95;
+}
+
+.food-copy p {
+  margin-bottom: 0;
+  font: 400 1rem/1.55 var(--ui);
+}
+
+.supplier-credit a {
+  color: var(--moss);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.24em;
+}
+
+.food-photo {
+  display: block;
+  height: clamp(23rem, 42vw, 35rem);
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+
+.food-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 78%;
+  transform: scale(1.06);
+  transition: transform 500ms ease;
+}
+
+.food-photo:hover img {
+  transform: scale(1.1);
+}
+
+.information-cards {
+  display: grid;
+  padding: 1.5rem 0 2rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.6rem;
+}
+
+.information-card {
+  min-height: 19.5rem;
+  padding: 2.5rem 2rem;
+  border: 1px solid var(--rule);
+  text-align: center;
+}
+
+.round-icon {
+  display: inline-grid;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  color: var(--moss);
+  background: var(--soft-sage);
+  place-items: center;
+}
+
+.round-icon svg {
+  width: 2.25rem;
+  height: 2.25rem;
   fill: none;
-  stroke: var(--coral);
+  stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.35;
 }
 
-.detail-row .detail-note {
-  margin-top: 0.25rem;
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  text-transform: none;
+.information-card h2 {
+  margin: 1.5rem 0 0.8rem;
+  font-size: clamp(1.9rem, 2.6vw, 2.5rem);
+  line-height: 1;
 }
 
-.detail-row .detail-note.upright {
+.information-card p {
+  margin-bottom: 0;
+  font: 400 0.88rem/1.75 var(--ui);
+}
+
+.event-note {
+  display: flex;
+  margin: 1.8rem auto 3.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  color: var(--moss);
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  font-style: italic;
+  text-align: center;
+}
+
+.event-note span {
+  color: var(--sage);
   font-style: normal;
 }
 
-.detail-note a {
-  color: var(--ink);
-  text-decoration-color: var(--coral);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.25em;
+.directions-section {
+  padding-top: 1.25rem;
 }
 
-.detail-separator {
-  height: 1px;
-  margin: 0.8rem 0;
-  background: rgba(83, 104, 79, 0.32);
+.directions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
 }
 
-.leaf-divider.compact {
-  width: 5.5rem;
-  margin-top: clamp(2rem, 4vh, 3.5rem);
+.wayfinding-photo,
+.map-panel {
+  margin: 0;
 }
 
-.leaf-divider.compact svg {
-  width: 5.5rem;
+.wayfinding-photo img,
+.map-panel iframe {
+  width: 100%;
+  height: 24rem;
+  border: 0;
 }
 
-.more-information {
-  margin: 1.4rem 0 0;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 500;
+.wayfinding-photo img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.wayfinding-photo figcaption {
+  padding: 0.75rem 0;
+  color: #5f645e;
+  font: 400 0.7rem/1.4 var(--ui);
   letter-spacing: 0.08em;
-  line-height: 1.12;
+  text-align: center;
   text-transform: uppercase;
 }
 
-.engagement-content {
-  width: min(46rem, calc(100% - 2.5rem));
-  padding-bottom: clamp(11rem, 28vh, 19rem);
+.map-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.engagement-details {
-  width: min(100%, 39rem);
+.map-panel iframe {
+  filter: saturate(0.58) sepia(0.08);
 }
 
-.engagement-details .detail-row {
-  min-height: 4.6rem;
+.engagement-rsvp {
+  padding: 4rem 1.5rem 1rem;
+  text-align: center;
 }
 
-.engagement-details .detail-row p {
-  font-size: clamp(1rem, 1.6vw, 1.3rem);
-  line-height: 1.25;
+/* Wedding */
+
+.wedding-hero {
+  position: relative;
+  min-height: 52rem;
+  padding: clamp(4rem, 7vw, 7rem) 1.5rem 5rem;
+  overflow: hidden;
+  text-align: center;
 }
 
-.engagement-details .detail-row .detail-note {
-  font-size: clamp(0.9rem, 1.35vw, 1.08rem);
+.wedding-hero::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  background: url("assets/botanical-border.jpg") center bottom / cover no-repeat;
+  opacity: 0.68;
 }
 
-.engagement-details .address {
-  letter-spacing: 0.04em;
+.wedding-hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+.wedding-hero h1 {
+  margin: 0;
+  font-size: clamp(5rem, 9vw, 8.4rem);
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+.wedding-details-panel {
+  width: min(34rem, 100%);
+  margin: 0 auto;
+  padding: 2.5rem 3rem;
+  border: 1px solid var(--rule);
+  background: rgba(250, 247, 241, 0.86);
+  box-shadow: inset 0 0 0 5px rgba(250, 247, 241, 0.72), inset 0 0 0 6px rgba(216, 208, 194, 0.65);
+}
+
+.wedding-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wedding-detail svg {
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 0.65rem;
+  fill: none;
+  stroke: var(--moss);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.35;
+}
+
+.wedding-detail p {
+  margin-bottom: 0;
+  color: var(--moss);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  line-height: 1.1;
+}
+
+.wedding-detail small {
+  margin-top: 0.35rem;
+  font: 400 0.74rem/1.5 var(--ui);
+}
+
+.venue-feature {
+  display: block;
+  width: 100%;
+  height: clamp(30rem, 53vw, 49rem);
+  overflow: hidden;
+  background: #d4d2c2;
+}
+
+.venue-feature img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 700ms ease;
+}
+
+.venue-feature:hover img {
+  transform: scale(1.015);
+}
+
+.accommodation-section {
+  display: grid;
+  padding: clamp(4rem, 8vw, 8rem) 0 4rem;
+  grid-template-columns: 0.85fr 1.35fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.accommodation-photo {
+  display: block;
+  height: 32rem;
+  overflow: hidden;
+}
+
+.accommodation-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.accommodation-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.accommodation-options article {
+  min-height: 13rem;
+  padding: 1rem 1.5rem;
+  border-left: 1px solid var(--rule);
+  text-align: center;
+}
+
+.accommodation-options article:first-child {
+  border-left: 0;
+}
+
+.accommodation-options svg {
+  width: 2.35rem;
+  height: 2.35rem;
+  margin-bottom: 1rem;
+  fill: none;
+  stroke: var(--moss);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.35;
+}
+
+.accommodation-options p {
+  margin-bottom: 0;
+  font: 400 0.72rem/1.75 var(--ui);
+}
+
+.travel-panel {
+  display: grid;
+  padding: 2.8rem 4rem;
+  border: 1px solid var(--rule);
+  grid-template-columns: 14rem minmax(0, 1fr);
+  align-items: center;
+  background: rgba(244, 238, 228, 0.35);
+}
+
+.travel-icon {
+  display: flex;
+  min-height: 10rem;
+  border-right: 1px solid var(--rule);
+  align-items: center;
+  justify-content: center;
+  color: var(--moss);
+}
+
+.travel-icon span {
+  margin-right: -1rem;
+  align-self: flex-start;
+  color: var(--sage);
+  font-size: 3rem;
+  transform: rotate(-25deg);
+}
+
+.travel-icon svg {
+  width: 5.75rem;
+  height: 5.75rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 0.9;
+}
+
+.travel-panel > div:last-child {
+  padding-left: clamp(2rem, 5vw, 5rem);
+}
+
+.travel-panel h2 {
+  margin-bottom: 0.85rem;
+  font-size: clamp(2.8rem, 5vw, 4.3rem);
+  line-height: 0.95;
+}
+
+.travel-panel p {
+  max-width: 44rem;
+  margin-bottom: 0.55rem;
+  font: 400 0.86rem/1.7 var(--ui);
+}
+
+.wedding-directions {
+  display: grid;
+  padding: clamp(5rem, 9vw, 9rem) 0 3rem;
+  grid-template-columns: 0.72fr 1.28fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.directions-copy {
+  text-align: center;
+}
+
+.directions-copy address {
+  margin: 0 0 1.75rem;
+  font-size: clamp(1.15rem, 2vw, 1.55rem);
+  font-style: normal;
+  line-height: 1.35;
+}
+
+.wedding-directions .map-panel iframe {
+  height: 29rem;
 }
 
 @keyframes gentle-arrival {
@@ -458,37 +895,115 @@ a {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 900px) {
+  :root {
+    --page: min(100% - 40px, 46rem);
+  }
+
   .site-header {
-    min-height: 5.7rem;
-    padding: 0.65rem 1rem 0.65rem 5.8rem;
-    justify-content: flex-end;
-    background: rgba(248, 244, 236, 0.95);
-    border-bottom: 1px solid rgba(83, 104, 79, 0.14);
+    min-height: 6.5rem;
   }
 
   .header-mark {
-    display: block;
-    left: 0.85rem;
-    width: 4.2rem;
-    height: 4.2rem;
+    width: 5.2rem;
+    height: 5.2rem;
+  }
+
+  .engagement-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .engagement-hero-copy {
+    min-height: 34rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .engagement-hero-copy::after {
+    right: 0;
+    opacity: 0.42;
+  }
+
+  .engagement-stencil {
+    height: 34rem;
+  }
+
+  .engagement-stencil::after {
+    inset: 0 0 auto;
+    width: auto;
+    height: 20%;
+    background: linear-gradient(to bottom, var(--paper), transparent);
+  }
+
+  .food-feature,
+  .accommodation-section,
+  .wedding-directions {
+    grid-template-columns: 1fr;
+  }
+
+  .food-copy {
+    padding: 0 1rem;
+  }
+
+  .food-photo {
+    height: 30rem;
+  }
+
+  .information-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .information-card {
+    min-height: 0;
+  }
+
+  .accommodation-photo {
+    height: 28rem;
+  }
+
+  .travel-panel {
+    grid-template-columns: 10rem minmax(0, 1fr);
+    padding: 2.5rem;
+  }
+
+  .directions-copy {
+    order: 1;
+  }
+
+  .wedding-directions .map-panel {
+    order: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --page: calc(100% - 32px);
+  }
+
+  .site-header {
+    min-height: 5.75rem;
+    padding: 0.7rem 1rem 0.7rem 5.5rem;
+  }
+
+  .header-mark {
+    left: 0.75rem;
+    width: 4.3rem;
+    height: 4.3rem;
   }
 
   .site-nav {
     width: 100%;
+    gap: clamp(0.75rem, 4vw, 1.4rem);
     justify-content: flex-end;
-    gap: clamp(0.85rem, 5vw, 1.7rem);
   }
 
   .site-nav a {
-    font-size: 0.64rem;
-    letter-spacing: 0.1em;
+    font-size: 0.59rem;
+    letter-spacing: 0.08em;
   }
 
-  .home-header .site-nav a:first-child {
-    display: none;
-  }
-
+  .home-header .site-nav a:first-child,
+  .event-header .site-nav a:first-child,
   .nav-party {
     display: none;
   }
@@ -500,132 +1015,132 @@ a {
 
   .home-content {
     width: min(100%, 30rem);
-    min-height: calc(100svh - 5.7rem);
-    padding: 2rem clamp(4.5rem, 17vw, 5.5rem) 3.5rem;
+    min-height: calc(100svh - 5.75rem);
+    padding: 2rem clamp(3.8rem, 15vw, 5rem) 3.5rem;
     justify-content: flex-start;
   }
 
-  .hero-mark {
-    width: 7rem;
-    height: 7rem;
-    margin: 0 0 1.6rem;
-  }
-
   .home-content h1 {
-    font-size: clamp(2.1rem, 9vw, 3rem);
-    letter-spacing: 0.07em;
-    line-height: 0.97;
-  }
-
-  .announcement {
-    margin-top: 1.5rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.23em;
-  }
-
-  .leaf-divider {
-    width: 85%;
-  }
-
-  .choice-intro {
-    margin-top: 0.2rem;
-    font-size: 0.63rem;
-    letter-spacing: 0.17em;
-  }
-
-  .choice-intro em {
-    font-size: 0.95rem;
+    font-size: clamp(2.05rem, 9vw, 3rem);
   }
 
   .event-choices {
     grid-template-columns: 1fr;
-    gap: 0.8rem;
   }
 
   .event-choice {
-    min-height: 6.8rem;
-    background: rgba(248, 244, 236, 0.72);
+    min-height: 9.5rem;
+    background: rgba(250, 247, 241, 0.72);
   }
 
-  .choice-title {
-    font-size: 1.45rem;
+  .engagement-hero-copy {
+    min-height: 31rem;
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
   }
 
-  .event-page {
-    background-position: center bottom;
+  .engagement-hero h1 {
+    font-size: clamp(3.6rem, 18vw, 5rem);
+  }
+
+  .engagement-stencil {
+    height: 25rem;
+  }
+
+  .food-feature {
+    padding-top: 4.25rem;
+    gap: 2rem;
+  }
+
+  .food-photo {
+    height: 23rem;
+  }
+
+  .information-card {
+    padding: 2.2rem 1.5rem;
+  }
+
+  .event-note {
+    gap: 0.65rem;
+  }
+
+  .directions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wayfinding-photo img,
+  .map-panel iframe,
+  .wedding-directions .map-panel iframe {
+    height: 20rem;
+  }
+
+  .engagement-rsvp {
+    padding-top: 2.75rem;
+  }
+
+  .wedding-hero {
+    min-height: 46rem;
+    padding-top: 4rem;
+  }
+
+  .wedding-hero h1 {
+    font-size: clamp(4.4rem, 20vw, 6rem);
+  }
+
+  .wedding-details-panel {
+    padding: 2.35rem 1.25rem;
+  }
+
+  .venue-feature {
+    height: 22rem;
+  }
+
+  .accommodation-section {
+    padding-top: 4rem;
+  }
+
+  .accommodation-photo {
+    height: 21rem;
+  }
+
+  .accommodation-options {
+    grid-template-columns: 1fr;
+  }
+
+  .accommodation-options article {
+    min-height: 0;
+    padding: 1.8rem 1rem;
+    border-top: 1px solid var(--rule);
+    border-left: 0;
+  }
+
+  .accommodation-options article:first-child {
+    border-top: 0;
+  }
+
+  .travel-panel {
+    padding: 2.2rem 1.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  .travel-icon {
+    min-height: 7rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .travel-panel > div:last-child {
+    padding: 2rem 0 0;
+    text-align: center;
+  }
+
+  .wedding-directions {
+    padding-top: 4.5rem;
+  }
+
+  .botanical-footer {
+    min-height: 12rem;
     background-size: auto 100%;
-    background-attachment: scroll;
-  }
-
-  .event-header .site-nav a:first-child {
-    display: none;
-  }
-
-  .event-content,
-  .engagement-content {
-    width: calc(100% - 2rem);
-    padding-top: 2.7rem;
-    padding-right: 1.15rem;
-    padding-bottom: 12rem;
-    padding-left: 1.15rem;
-    box-shadow: 0 0 1.25rem 1rem var(--paper);
-  }
-
-  .event-content h1 {
-    font-size: clamp(2.35rem, 11vw, 3.35rem);
-    letter-spacing: 0.06em;
-  }
-
-  .small-rule {
-    margin-bottom: 2.1rem;
-  }
-
-  .event-details {
-    width: min(100%, 29rem);
-  }
-
-  .detail-row {
-    grid-template-columns: 2.35rem minmax(0, 1fr);
-    gap: 0.85rem;
-    min-height: 5rem;
-  }
-
-  .detail-icon {
-    width: 1.8rem;
-    height: 1.8rem;
-  }
-
-  .detail-row p {
-    font-size: clamp(1.08rem, 5.3vw, 1.35rem);
-  }
-
-  .engagement-details .detail-row {
-    min-height: 4.8rem;
-  }
-
-  .engagement-details .detail-row p {
-    font-size: clamp(0.94rem, 4.2vw, 1.14rem);
-  }
-
-  .engagement-details .detail-row .detail-note {
-    font-size: clamp(0.82rem, 3.8vw, 1rem);
-    overflow-wrap: anywhere;
-  }
-}
-
-@media (max-width: 410px) {
-  .home-content {
-    padding-right: 3.8rem;
-    padding-left: 3.8rem;
-  }
-
-  .site-nav {
-    gap: 0.8rem;
-  }
-
-  .site-nav a {
-    font-size: 0.59rem;
-    letter-spacing: 0.08em;
   }
 }
 
