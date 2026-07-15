@@ -224,6 +224,21 @@ a {
   stroke-width: 1.3;
 }
 
+.divider-sprig,
+.choice-sprig,
+.botanical-sprig {
+  fill: currentColor;
+}
+
+.divider-sprig .sprig-stem,
+.choice-sprig .sprig-stem,
+.botanical-sprig .sprig-stem {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.4;
+}
+
 .choice-intro {
   display: flex;
   margin: clamp(0.25rem, 1vh, 0.75rem) 0 clamp(1rem, 2vh, 1.5rem);
@@ -264,9 +279,10 @@ a {
 }
 
 .choice-sprig {
+  display: block;
+  width: 3.7rem;
+  height: 1.9rem;
   color: var(--sage);
-  font-size: 1.5rem;
-  line-height: 1;
 }
 
 .choice-sprig.coral {
@@ -294,7 +310,8 @@ a {
   background-image: url("assets/botanical-border.jpg");
   background-position: center bottom;
   background-repeat: no-repeat;
-  background-size: min(100vw, 72rem) auto;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .event-header {
@@ -304,7 +321,9 @@ a {
 .event-content {
   width: min(43rem, calc(100% - 2.5rem));
   margin: 0 auto;
-  padding: clamp(1.5rem, 4vh, 3.5rem) 0 clamp(9rem, 24vh, 16rem);
+  padding: clamp(1.5rem, 4vh, 3.5rem) clamp(1.5rem, 4vw, 3.5rem) clamp(9rem, 24vh, 16rem);
+  background: var(--paper);
+  box-shadow: 0 0 2.5rem 2rem var(--paper);
   text-align: center;
   animation: gentle-arrival 650ms ease-out both;
 }
@@ -320,11 +339,15 @@ a {
 }
 
 .botanical-sprig {
-  margin: 0 0 0.85rem;
+  display: block;
+  width: 4.5rem;
+  height: auto;
+  margin: 0 auto 0.85rem;
   color: var(--sage);
-  font-size: 2.1rem;
-  line-height: 1;
-  transform: rotate(180deg);
+}
+
+.botanical-sprig.coral {
+  color: var(--coral);
 }
 
 .small-rule {
@@ -542,7 +565,9 @@ a {
   }
 
   .event-page {
-    background-size: auto min(78rem, 100%);
+    background-position: center bottom;
+    background-size: auto 100%;
+    background-attachment: scroll;
   }
 
   .event-header .site-nav a:first-child {
@@ -553,7 +578,10 @@ a {
   .engagement-content {
     width: calc(100% - 2rem);
     padding-top: 2.7rem;
+    padding-right: 1.15rem;
     padding-bottom: 12rem;
+    padding-left: 1.15rem;
+    box-shadow: 0 0 1.25rem 1rem var(--paper);
   }
 
   .event-content h1 {
