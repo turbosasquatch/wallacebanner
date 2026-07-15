@@ -222,6 +222,7 @@ iframe:focus-visible {
 
 .leaf-divider img {
   width: 6.4rem;
+  height: auto;
 }
 
 .choice-intro {
