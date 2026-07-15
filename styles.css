@@ -1583,15 +1583,12 @@ iframe:focus-visible {
     margin-top: 0.6rem;
     grid-column: 1;
     grid-row: 1;
-    font-size: 0;
+    color: var(--coral);
+    font-size: 0.9rem;
   }
 
   .timeline-marker::after {
-    width: 0.35rem;
-    height: 0.35rem;
-    border-radius: 50%;
-    content: "";
-    background: var(--coral);
+    content: none;
   }
 
   .timeline-copy,
