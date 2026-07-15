@@ -906,6 +906,16 @@ iframe:focus-visible {
   line-height: 0.98;
 }
 
+.timeline-description {
+  max-width: 26rem;
+  margin: 1rem 0 0;
+  font: 400 clamp(0.72rem, 1vw, 0.82rem)/1.75 var(--ui);
+}
+
+.timeline-event:nth-child(even) .timeline-description {
+  margin-left: auto;
+}
+
 .timeline-intro {
   margin-bottom: 0.35rem;
   font: 500 0.67rem/1.4 var(--ui);
@@ -1561,6 +1571,14 @@ iframe:focus-visible {
 
   .timeline-copy h3 {
     font-size: 2rem;
+  }
+
+  .timeline-description,
+  .timeline-event:nth-child(even) .timeline-description {
+    max-width: none;
+    margin: 0.85rem 0 0;
+    font-size: 0.74rem;
+    line-height: 1.7;
   }
 
   .timeline-event:nth-child(even) .timeline-copy small {
