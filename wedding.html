@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Montserrat:wght@400;500&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=20260715-2">
+    <link rel="stylesheet" href="styles.css?v=20260715-3">
   </head>
   <body class="event-page wedding-page">
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -37,81 +37,108 @@
 
     <main id="main-content">
       <section class="wedding-hero" aria-labelledby="wedding-title">
-        <h1 id="wedding-title">The Wedding</h1>
-        <div class="floral-rule" aria-hidden="true"><span></span><b>❧</b><span></span></div>
-
-        <div class="wedding-details-panel">
-          <div class="wedding-detail">
-            <svg aria-hidden="true"><use href="#icon-calendar"/></svg>
-            <p>31 July 2027</p>
+        <img class="wedding-hero-sprig wedding-hero-sprig-left" src="assets/wedding-sprig-sage.png" alt="" width="760" height="296" aria-hidden="true">
+        <div class="wedding-hero-copy">
+          <h1 id="wedding-title">The Wedding</h1>
+          <span class="coral-rule" aria-hidden="true"></span>
+          <p class="wedding-date"><time datetime="2027-07-31">31 July 2027</time></p>
+          <div class="wedding-ceremony-time">
+            <p>Ceremony at <time datetime="2027-07-31T14:00">2:00pm</time></p>
+            <small>Please arrive between 1:15pm and 1:30pm</small>
           </div>
-          <span class="short-rule" aria-hidden="true"></span>
-          <div class="wedding-detail">
-            <svg aria-hidden="true"><use href="#icon-clock"/></svg>
-            <p>Ceremony at 2:00pm</p>
-            <small>Please arrive from 1:15pm</small>
-          </div>
-          <span class="short-rule" aria-hidden="true"></span>
-          <div class="wedding-detail">
-            <svg aria-hidden="true"><use href="#icon-pin"/></svg>
-            <p>High House Weddings</p>
-            <small>Old Heath Road, Althorne, Essex, CM3 6EW</small>
-          </div>
+          <span class="coral-rule" aria-hidden="true"></span>
+          <address>
+            <strong>High House Weddings</strong>
+            <span>Old Heath Road, Althorne, Essex, CM3 6EW</span>
+          </address>
         </div>
+        <figure class="wedding-hero-photo">
+          <img src="assets/wedding-timeline-arrival.jpg" alt="Aerial view of High House Weddings, its gardens and lake" width="1092" height="1365">
+        </figure>
+        <img class="wedding-hero-sprig wedding-hero-sprig-right" src="assets/wedding-sprig-sage.png" alt="" width="760" height="296" aria-hidden="true">
       </section>
 
-      <a class="venue-feature" href="https://www.highhouseweddings.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit the High House Weddings website">
-        <img src="assets/high-house-orangery-exterior.jpg" alt="The black-framed glass Orangery at High House Weddings, set in its lawn and gardens" width="1200" height="799">
-      </a>
-
-      <section class="content-section accommodation-section" aria-labelledby="accommodation-title">
-        <a class="accommodation-photo" href="https://www.highhouseweddings.com/" target="_blank" rel="noopener noreferrer" aria-label="See more of High House Weddings">
-          <img src="assets/high-house-orangery-interior.jpg" alt="Wedding tables arranged inside the light-filled High House Orangery" width="1200" height="799" loading="lazy">
-        </a>
-        <div class="accommodation-content">
-          <div class="section-heading">
-            <h2 id="accommodation-title">Accommodation</h2>
-            <div class="floral-rule compact" aria-hidden="true"><span></span><b>❧</b><span></span></div>
-          </div>
-          <div class="accommodation-options">
-            <article>
-              <svg aria-hidden="true"><use href="#icon-bed"/></svg>
-              <p>Some accommodation is available on-site.</p>
-            </article>
-            <article>
-              <svg aria-hidden="true"><use href="#icon-building"/></svg>
-              <p>Off-site accommodation will be investigated based on the number of guests who require it.</p>
-            </article>
-            <article>
-              <svg aria-hidden="true"><use href="#icon-tag"/></svg>
-              <p>Preferential group rates will be sought where possible.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="content-section travel-panel" aria-labelledby="travel-title">
-        <div class="travel-icon" aria-hidden="true"><span>❧</span><svg><use href="#icon-car"/></svg></div>
-        <div>
-          <h2 id="travel-title">Travel made simple</h2>
-          <p>Group transport between off-site accommodation and the venue will be organised.</p>
-          <p>We’ll collect accommodation and transport requirements with the initial RSVP and share final arrangements in advance.</p>
-        </div>
-      </section>
-
-      <section class="content-section directions-section wedding-directions" aria-labelledby="wedding-directions-title">
-        <div class="directions-copy">
-          <h2 id="wedding-directions-title">Get directions</h2>
+      <section class="wedding-timeline-section" aria-labelledby="timeline-title">
+        <div class="section-heading timeline-heading">
+          <h2 id="timeline-title">The day</h2>
           <div class="floral-rule compact" aria-hidden="true"><span></span><b>❧</b><span></span></div>
-          <address>High House Weddings<br>Old Heath Road,<br>Althorne, Essex, CM3 6EW</address>
-          <a class="primary-button" href="https://www.google.com/maps/dir/?api=1&amp;destination=High%20House%20Weddings%2C%20Old%20Heath%20Road%2C%20Althorne%2C%20Essex%2C%20CM3%206EW" target="_blank" rel="noopener noreferrer">Get directions <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="map-panel">
-          <iframe title="Map showing High House Weddings in Althorne" src="https://www.google.com/maps?q=High%20House%20Weddings%2C%20Old%20Heath%20Road%2C%20Althorne%2C%20Essex%2C%20CM3%206EW&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <ol class="wedding-timeline">
+          <li class="timeline-event">
+            <figure class="timeline-photo timeline-photo-arrival">
+              <img src="assets/wedding-timeline-arrival.jpg" alt="High House Weddings seen from above" width="1092" height="1365" loading="lazy">
+            </figure>
+            <div class="timeline-marker" aria-hidden="true">1</div>
+            <div class="timeline-copy">
+              <time datetime="2027-07-31T13:15">1:15–1:30pm</time>
+              <h3>Arrival</h3>
+            </div>
+          </li>
+          <li class="timeline-event">
+            <figure class="timeline-photo">
+              <img src="assets/wedding-timeline-welcome-drinks.jpg" alt="The garden terrace where welcome drinks will be served" width="1920" height="1280" loading="lazy">
+            </figure>
+            <div class="timeline-marker" aria-hidden="true">2</div>
+            <div class="timeline-copy">
+              <time datetime="2027-07-31T13:15">1:15–1:45pm</time>
+              <h3>Welcoming drinks</h3>
+            </div>
+          </li>
+          <li class="timeline-event">
+            <figure class="timeline-photo timeline-photo-portrait">
+              <img src="assets/wedding-timeline-ceremony.jpg" alt="The timber-framed ceremony barn dressed with flowers" width="1365" height="2048" loading="lazy">
+            </figure>
+            <div class="timeline-marker" aria-hidden="true">3</div>
+            <div class="timeline-copy">
+              <time datetime="2027-07-31T14:00">2:00pm</time>
+              <h3>The ceremony</h3>
+            </div>
+          </li>
+          <li class="timeline-event">
+            <figure class="timeline-photo">
+              <img src="assets/wedding-timeline-canapes.jpg" alt="The terrace and gardens for drinks and canapés" width="1440" height="960" loading="lazy">
+            </figure>
+            <div class="timeline-marker" aria-hidden="true">4</div>
+            <div class="timeline-copy">
+              <time datetime="2027-07-31T14:30">2:30pm</time>
+              <h3>Drinks &amp; canapés</h3>
+            </div>
+          </li>
+          <li class="timeline-event">
+            <figure class="timeline-photo timeline-photo-portrait">
+              <img src="assets/wedding-timeline-breakfast.jpg" alt="The Orangery set for the wedding breakfast" width="1080" height="1350" loading="lazy">
+            </figure>
+            <div class="timeline-marker" aria-hidden="true">5</div>
+            <div class="timeline-copy">
+              <time datetime="2027-07-31T15:55">3:55pm</time>
+              <p class="timeline-intro">Everyone to the Orangery for</p>
+              <h3>Speeches &amp;<br> wedding breakfast</h3>
+            </div>
+          </li>
+          <li class="timeline-event">
+            <figure class="timeline-photo timeline-photo-party">
+              <img src="assets/wedding-timeline-party.jpg" alt="The Orangery glowing after dark as guests celebrate" width="2048" height="1365" loading="lazy">
+            </figure>
+            <div class="timeline-marker" aria-hidden="true">6</div>
+            <div class="timeline-copy">
+              <time datetime="2027-07-31T23:30">Until 11:30pm</time>
+              <h3>Party into the evening</h3>
+              <small>*Subject to approval for extended hours.</small>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="wedding-accommodation" aria-labelledby="accommodation-title">
+        <img class="accommodation-sprig accommodation-sprig-left" src="assets/wedding-sprig-sage.png" alt="" width="760" height="296" aria-hidden="true">
+        <div>
+          <h2 id="accommodation-title">Accommodation &amp; transport</h2>
+          <div class="floral-rule compact" aria-hidden="true"><span></span><b>❧</b><span></span></div>
+          <p>We’ll be taking numbers and looking at accommodation for everyone, including transport, at preferential rates. You’ll be able to select this as an optional extra when you RSVP.</p>
         </div>
+        <img class="accommodation-sprig accommodation-sprig-right" src="assets/wedding-sprig-sage.png" alt="" width="760" height="296" aria-hidden="true">
       </section>
     </main>
-
-    <footer class="botanical-footer" aria-hidden="true"></footer>
   </body>
 </html>

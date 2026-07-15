@@ -673,216 +673,292 @@ iframe:focus-visible {
 
 .wedding-hero {
   position: relative;
-  min-height: 52rem;
-  padding: clamp(4rem, 7vw, 7rem) 1.5rem 5rem;
+  display: grid;
+  width: min(1220px, calc(100% - 96px));
+  min-height: clamp(35rem, 47vw, 42rem);
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5.5rem) clamp(1rem, 4vw, 4rem);
   overflow: hidden;
-  text-align: center;
+  grid-template-columns: minmax(17rem, 0.82fr) minmax(25rem, 1.18fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: center;
 }
 
-.wedding-hero::before {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  content: "";
-  background: url("assets/botanical-border.jpg") center bottom / cover no-repeat;
-  opacity: 0.68;
-}
-
-.wedding-hero > * {
+.wedding-hero-copy {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  padding-left: clamp(0rem, 2vw, 2rem);
 }
 
 .wedding-hero h1 {
   margin: 0;
-  font-size: clamp(5rem, 9vw, 8.4rem);
-  letter-spacing: -0.02em;
+  font-size: clamp(3.8rem, 6.2vw, 6.2rem);
+  letter-spacing: -0.025em;
+  line-height: 0.92;
+}
+
+.coral-rule {
+  display: block;
+  width: 2.65rem;
+  height: 1px;
+  margin: 1.45rem 0;
+  background: var(--coral);
+}
+
+.wedding-date {
+  margin-bottom: 1.6rem;
+  color: var(--moss);
+  font-size: clamp(1.75rem, 2.75vw, 2.5rem);
+  line-height: 1;
+}
+
+.wedding-ceremony-time p {
+  margin-bottom: 0.25rem;
+  color: var(--ink);
+  font: 500 0.9rem/1.5 var(--ui);
+}
+
+.wedding-ceremony-time small,
+.wedding-hero address span {
+  display: block;
+  font: 400 0.74rem/1.6 var(--ui);
+}
+
+.wedding-hero address {
+  color: var(--ink);
+  font-style: normal;
+}
+
+.wedding-hero address strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--moss);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.wedding-hero-photo {
+  position: relative;
+  z-index: 1;
+  height: clamp(28rem, 38vw, 35rem);
+  margin: 0;
+  overflow: hidden;
+  background: var(--soft-sage);
+}
+
+.wedding-hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 58%;
+}
+
+.wedding-hero-sprig {
+  position: absolute;
+  z-index: 0;
+  width: clamp(12rem, 21vw, 20rem);
+  height: auto;
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+.wedding-hero-sprig-left {
+  top: -1rem;
+  left: -8rem;
+  transform: rotate(12deg);
+}
+
+.wedding-hero-sprig-right {
+  right: -8rem;
+  bottom: -1rem;
+  transform: rotate(192deg);
+}
+
+.wedding-timeline-section {
+  padding: clamp(5rem, 8vw, 8rem) 0 clamp(6rem, 10vw, 10rem);
+  border-top: 1px solid rgba(89, 101, 73, 0.14);
+}
+
+.timeline-heading {
+  margin-bottom: clamp(3rem, 6vw, 5.5rem);
+}
+
+.timeline-heading h2 {
+  margin-bottom: 0;
+  font-size: clamp(3.25rem, 5.5vw, 5rem);
   line-height: 0.9;
 }
 
-.wedding-details-panel {
-  width: min(34rem, 100%);
+.wedding-timeline {
+  position: relative;
+  display: flex;
+  width: min(1080px, calc(100% - 64px));
   margin: 0 auto;
-  padding: 2.5rem 3rem;
-  border: 1px solid var(--rule);
-  background: rgba(250, 247, 241, 0.86);
-  box-shadow: inset 0 0 0 5px rgba(250, 247, 241, 0.72), inset 0 0 0 6px rgba(216, 208, 194, 0.65);
-}
-
-.wedding-detail {
-  display: flex;
+  padding: 0;
   flex-direction: column;
+  gap: clamp(3.5rem, 8vw, 7rem);
+  list-style: none;
+}
+
+.wedding-timeline::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  content: "";
+  background: rgba(89, 101, 73, 0.3);
+  transform: translateX(-0.5px);
+}
+
+.timeline-event {
+  position: relative;
+  display: grid;
+  min-height: 17rem;
+  grid-template-columns: minmax(0, 1fr) 4.5rem minmax(0, 1fr);
   align-items: center;
 }
 
-.wedding-detail svg {
-  width: 2rem;
-  height: 2rem;
-  margin-bottom: 0.65rem;
-  fill: none;
-  stroke: var(--moss);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.35;
-}
-
-.wedding-detail p {
-  margin-bottom: 0;
-  color: var(--moss);
-  font-size: clamp(1.6rem, 3vw, 2.3rem);
-  line-height: 1.1;
-}
-
-.wedding-detail small {
-  margin-top: 0.35rem;
-  font: 400 0.74rem/1.5 var(--ui);
-}
-
-.venue-feature {
-  display: block;
+.timeline-photo {
   width: 100%;
-  height: clamp(30rem, 53vw, 49rem);
+  height: clamp(15rem, 25vw, 20rem);
+  margin: 0;
   overflow: hidden;
-  background: #d4d2c2;
+  grid-column: 1;
+  background: var(--soft-sage);
 }
 
-.venue-feature img {
+.timeline-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.timeline-photo-arrival img {
+  object-position: center 67%;
+}
+
+.timeline-photo-portrait img {
+  object-position: center 46%;
+}
+
+.timeline-photo-party img {
   object-position: center;
-  transition: transform 700ms ease;
 }
 
-.venue-feature:hover img {
-  transform: scale(1.015);
+.timeline-event:nth-child(even) .timeline-photo {
+  grid-column: 3;
 }
 
-.accommodation-section {
+.timeline-marker {
+  position: relative;
+  z-index: 2;
   display: grid;
-  padding: clamp(4rem, 8vw, 8rem) 0 4rem;
-  grid-template-columns: 0.85fr 1.35fr;
-  gap: clamp(2rem, 6vw, 6rem);
-  align-items: center;
-}
-
-.accommodation-photo {
-  display: block;
-  height: 32rem;
-  overflow: hidden;
-}
-
-.accommodation-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.accommodation-options {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.accommodation-options article {
-  min-height: 13rem;
-  padding: 1rem 1.5rem;
-  border-left: 1px solid var(--rule);
-  text-align: center;
-}
-
-.accommodation-options article:first-child {
-  border-left: 0;
-}
-
-.accommodation-options svg {
-  width: 2.35rem;
-  height: 2.35rem;
-  margin-bottom: 1rem;
-  fill: none;
-  stroke: var(--moss);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.35;
-}
-
-.accommodation-options p {
-  margin-bottom: 0;
-  font: 400 0.72rem/1.75 var(--ui);
-}
-
-.travel-panel {
-  display: grid;
-  padding: 2.8rem 4rem;
-  border: 1px solid var(--rule);
-  grid-template-columns: 14rem minmax(0, 1fr);
-  align-items: center;
-  background: rgba(244, 238, 228, 0.35);
-}
-
-.travel-icon {
-  display: flex;
-  min-height: 10rem;
-  border-right: 1px solid var(--rule);
-  align-items: center;
-  justify-content: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  border: 1px solid var(--sage);
+  border-radius: 50%;
+  grid-column: 2;
+  grid-row: 1;
+  place-self: center;
+  place-items: center;
   color: var(--moss);
+  background: var(--paper);
+  font-size: 1.25rem;
 }
 
-.travel-icon span {
-  margin-right: -1rem;
-  align-self: flex-start;
-  color: var(--sage);
-  font-size: 3rem;
-  transform: rotate(-25deg);
+.timeline-copy {
+  grid-column: 3;
+  grid-row: 1;
+  padding-left: clamp(1rem, 3vw, 3rem);
 }
 
-.travel-icon svg {
-  width: 5.75rem;
-  height: 5.75rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 0.9;
+.timeline-event:nth-child(even) .timeline-copy {
+  grid-column: 1;
+  padding-right: clamp(1rem, 3vw, 3rem);
+  padding-left: 0;
+  text-align: right;
 }
 
-.travel-panel > div:last-child {
-  padding-left: clamp(2rem, 5vw, 5rem);
+.timeline-copy time {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--coral);
+  font-size: clamp(1.35rem, 2.3vw, 1.9rem);
+  line-height: 1;
 }
 
-.travel-panel h2 {
-  margin-bottom: 0.85rem;
+.timeline-copy h3 {
+  margin: 0;
+  color: var(--moss);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 400;
+  line-height: 0.98;
+}
+
+.timeline-intro {
+  margin-bottom: 0.35rem;
+  font: 500 0.67rem/1.4 var(--ui);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.timeline-copy small {
+  display: block;
+  max-width: 17rem;
+  margin-top: 0.8rem;
+  font: 400 0.68rem/1.5 var(--ui);
+}
+
+.timeline-event:nth-child(even) .timeline-copy small {
+  margin-left: auto;
+}
+
+.wedding-accommodation {
+  position: relative;
+  display: grid;
+  min-height: 23rem;
+  padding: clamp(4rem, 7vw, 6.5rem) 2rem;
+  overflow: hidden;
+  place-items: center;
+  text-align: center;
+  background: rgba(232, 231, 217, 0.64);
+}
+
+.wedding-accommodation > div {
+  position: relative;
+  z-index: 1;
+  width: min(47rem, calc(100% - 3rem));
+}
+
+.wedding-accommodation h2 {
+  margin-bottom: 0;
   font-size: clamp(2.8rem, 5vw, 4.3rem);
   line-height: 0.95;
 }
 
-.travel-panel p {
-  max-width: 44rem;
-  margin-bottom: 0.55rem;
-  font: 400 0.86rem/1.7 var(--ui);
+.wedding-accommodation p {
+  margin-bottom: 0;
+  font: 400 0.86rem/1.8 var(--ui);
 }
 
-.wedding-directions {
-  display: grid;
-  padding: clamp(5rem, 9vw, 9rem) 0 3rem;
-  grid-template-columns: 0.72fr 1.28fr;
-  gap: clamp(2rem, 6vw, 6rem);
-  align-items: center;
+.accommodation-sprig {
+  position: absolute;
+  bottom: -1rem;
+  width: clamp(14rem, 24vw, 22rem);
+  height: auto;
+  opacity: 0.55;
 }
 
-.directions-copy {
-  text-align: center;
+.accommodation-sprig-left {
+  left: -5rem;
+  transform: rotate(12deg);
 }
 
-.directions-copy address {
-  margin: 0 0 1.75rem;
-  font-size: clamp(1.15rem, 2vw, 1.55rem);
-  font-style: normal;
-  line-height: 1.35;
-}
-
-.wedding-directions .map-panel iframe {
-  height: 29rem;
+.accommodation-sprig-right {
+  right: -5rem;
+  transform: scaleX(-1) rotate(12deg);
 }
 
 @keyframes gentle-arrival {
@@ -973,6 +1049,36 @@ iframe:focus-visible {
 
   .wedding-directions .map-panel {
     order: 2;
+  }
+
+  .wedding-hero {
+    width: min(100% - 40px, 46rem);
+    min-height: 0;
+    padding: 4rem 1.25rem 5rem;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .wedding-hero-copy {
+    max-width: 30rem;
+    margin: 0 auto;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .wedding-hero h1 {
+    font-size: clamp(4.2rem, 12vw, 6.2rem);
+  }
+
+  .wedding-hero .coral-rule {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .wedding-hero-photo {
+    width: min(38rem, 100%);
+    height: clamp(22rem, 72vw, 31rem);
+    margin: 0 auto;
   }
 }
 
@@ -1079,64 +1185,156 @@ iframe:focus-visible {
     padding-top: 2.75rem;
   }
 
+
   .wedding-hero {
-    min-height: 46rem;
-    padding-top: 4rem;
+    width: 100%;
+    padding: 3.25rem 1rem 4rem;
+    gap: 2rem;
   }
 
   .wedding-hero h1 {
-    font-size: clamp(4.4rem, 20vw, 6rem);
+    font-size: clamp(3.75rem, 17vw, 5rem);
   }
 
-  .wedding-details-panel {
-    padding: 2.35rem 1.25rem;
+  .wedding-date {
+    font-size: 1.75rem;
   }
 
-  .venue-feature {
-    height: 22rem;
+  .wedding-ceremony-time small,
+  .wedding-hero address span {
+    font-size: 0.69rem;
   }
 
-  .accommodation-section {
+  .wedding-hero-photo {
+    height: min(84vw, 25rem);
+  }
+
+  .wedding-hero-sprig {
+    width: 12rem;
+    opacity: 0.42;
+  }
+
+  .wedding-hero-sprig-left {
+    top: -2rem;
+    left: -7rem;
+  }
+
+  .wedding-hero-sprig-right {
+    right: -7rem;
+    bottom: -2rem;
+  }
+
+  .wedding-timeline-section {
     padding-top: 4rem;
+    padding-bottom: 5rem;
   }
 
-  .accommodation-photo {
-    height: 21rem;
+  .timeline-heading {
+    margin-bottom: 3rem;
   }
 
-  .accommodation-options {
-    grid-template-columns: 1fr;
+  .timeline-heading h2 {
+    font-size: 3.5rem;
   }
 
-  .accommodation-options article {
+  .wedding-timeline {
+    width: calc(100% - 32px);
+    gap: 3.25rem;
+  }
+
+  .wedding-timeline::before {
+    left: 0.8rem;
+    transform: none;
+  }
+
+  .timeline-event {
     min-height: 0;
-    padding: 1.8rem 1rem;
-    border-top: 1px solid var(--rule);
-    border-left: 0;
+    grid-template-columns: 1.6rem minmax(0, 1fr);
+    gap: 0 0.9rem;
+    align-items: start;
   }
 
-  .accommodation-options article:first-child {
-    border-top: 0;
+  .timeline-photo,
+  .timeline-event:nth-child(even) .timeline-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    grid-column: 2;
+    grid-row: 1;
   }
 
-  .travel-panel {
-    padding: 2.2rem 1.5rem;
-    grid-template-columns: 1fr;
+  .timeline-photo-portrait {
+    aspect-ratio: 4 / 3;
   }
 
-  .travel-icon {
-    min-height: 7rem;
-    border-right: 0;
-    border-bottom: 1px solid var(--rule);
+  .timeline-marker {
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-top: 0.6rem;
+    grid-column: 1;
+    grid-row: 1;
+    font-size: 0;
   }
 
-  .travel-panel > div:last-child {
-    padding: 2rem 0 0;
-    text-align: center;
+  .timeline-marker::after {
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    content: "";
+    background: var(--coral);
   }
 
-  .wedding-directions {
-    padding-top: 4.5rem;
+  .timeline-copy,
+  .timeline-event:nth-child(even) .timeline-copy {
+    margin-top: 1.15rem;
+    padding: 0;
+    grid-column: 2;
+    grid-row: 2;
+    text-align: left;
+  }
+
+  .timeline-copy time {
+    margin-bottom: 0.3rem;
+    font-size: 1.35rem;
+  }
+
+  .timeline-copy h3 {
+    font-size: 2rem;
+  }
+
+  .timeline-event:nth-child(even) .timeline-copy small {
+    margin-left: 0;
+  }
+
+  .wedding-accommodation {
+    min-height: 26rem;
+    padding: 4.5rem 1.5rem;
+  }
+
+  .wedding-accommodation > div {
+    width: min(100%, 25rem);
+  }
+
+  .wedding-accommodation h2 {
+    font-size: 2.75rem;
+  }
+
+  .wedding-accommodation p {
+    font-size: 0.76rem;
+    line-height: 1.7;
+  }
+
+  .accommodation-sprig {
+    width: 13rem;
+    opacity: 0.45;
+  }
+
+  .accommodation-sprig-left {
+    left: -7rem;
+  }
+
+  .accommodation-sprig-right {
+    right: -7rem;
   }
 
   .botanical-footer {
