@@ -1,0 +1,655 @@
+.accommodation-page {
+  overflow-x: hidden;
+  background: var(--paper);
+}
+
+.accommodation-page .event-header {
+  min-height: 7rem;
+  padding: 0.75rem max(4vw, 2rem);
+}
+
+.accommodation-page .header-mark {
+  width: 5.75rem;
+  height: 5.75rem;
+}
+
+.accommodation-page .site-nav {
+  gap: clamp(1.6rem, 3.2vw, 3.5rem);
+}
+
+.accommodation-page .site-nav a[aria-current="page"] {
+  color: var(--coral);
+}
+
+.accommodation-hero {
+  position: relative;
+  display: grid;
+  min-height: clamp(31rem, 55vw, 45rem);
+  padding: clamp(5rem, 9vw, 8rem) 2rem clamp(4.5rem, 8vw, 7rem);
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.accommodation-hero-copy {
+  position: relative;
+  z-index: 2;
+  width: min(54rem, 100%);
+  text-align: center;
+}
+
+.accommodation-hero h1 {
+  margin: 0;
+  color: var(--moss);
+  font-size: clamp(4rem, 7.2vw, 7rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 0.88;
+}
+
+.accommodation-divider {
+  width: clamp(8.5rem, 13vw, 11rem);
+  margin: 1.8rem auto 1.25rem;
+}
+
+.accommodation-hero-copy > p:not(.booking-note) {
+  margin: 0;
+  font: 400 clamp(0.95rem, 1.3vw, 1.12rem)/1.7 var(--ui);
+}
+
+.booking-note {
+  display: inline-flex;
+  max-width: 42rem;
+  margin: 2rem auto 0;
+  align-items: center;
+  color: var(--moss);
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+  font-style: italic;
+  line-height: 1.45;
+}
+
+.booking-note::before {
+  margin-right: 0.75rem;
+  color: var(--coral);
+  content: "❧";
+  font-style: normal;
+}
+
+.hero-floral {
+  position: absolute;
+  z-index: 1;
+  bottom: -1.5rem;
+  width: clamp(24rem, 43vw, 44rem);
+  height: auto;
+  pointer-events: none;
+}
+
+.hero-floral-left {
+  left: min(-15rem, -11vw);
+}
+
+.hero-floral-right {
+  right: min(-15rem, -11vw);
+}
+
+.venue-list {
+  width: var(--page);
+  margin: 0 auto;
+  padding: clamp(3.75rem, 7vw, 7rem) 0 clamp(5rem, 9vw, 9rem);
+}
+
+.venue {
+  display: grid;
+  align-items: center;
+  border-bottom: 1px solid var(--rule);
+}
+
+.venue-featured {
+  min-height: 42rem;
+  padding-bottom: clamp(4rem, 7vw, 6rem);
+  grid-template-columns: minmax(19rem, 0.72fr) minmax(32rem, 1.28fr);
+  gap: clamp(3rem, 6vw, 6rem);
+}
+
+.venue-row {
+  min-height: 35rem;
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+  grid-template-columns: minmax(0, 1fr) minmax(19rem, 0.88fr);
+  gap: clamp(3rem, 6vw, 6rem);
+}
+
+.venue-row-reverse .venue-media {
+  order: 2;
+}
+
+.venue-row-reverse .venue-copy {
+  order: 1;
+}
+
+.venue-copy {
+  position: relative;
+}
+
+.venue-place {
+  margin: 0 0 0.6rem;
+  color: var(--coral);
+  font: 500 0.7rem/1 var(--ui);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.venue h2 {
+  margin: 0;
+  color: var(--moss);
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 0.9;
+}
+
+.venue-sprig {
+  width: 7rem;
+  height: 2rem;
+  margin: 1rem 0 1.45rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.venue-copy > p:not(.venue-place, .pow-intro, .personal-pick, .pow-breakfast, .venue-caveat, .venue-contact) {
+  max-width: 34rem;
+  margin: 0 0 1.6rem;
+  font: 400 0.85rem/1.85 var(--ui);
+}
+
+.pow-intro {
+  margin: 0;
+  font-size: 1.35rem;
+}
+
+.personal-pick {
+  margin: 0.35rem 0 1.25rem;
+  color: var(--coral);
+  font-size: 1.35rem;
+  font-style: italic;
+}
+
+.pow-breakfast {
+  margin: 0.4rem 0 1.5rem;
+  color: var(--coral);
+  font-size: clamp(1.55rem, 2.5vw, 2.2rem);
+  font-style: italic;
+  transform: rotate(-3deg);
+  transform-origin: left center;
+}
+
+.venue-caveat,
+.venue-contact {
+  margin: 0 0 1.25rem;
+  color: rgba(39, 51, 50, 0.72);
+  font: 400 0.72rem/1.65 var(--ui);
+}
+
+.venue-contact a {
+  text-decoration-color: var(--coral);
+  text-underline-offset: 0.2em;
+}
+
+.venue-media {
+  height: clamp(25rem, 38vw, 36rem);
+  margin: 0;
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+
+.venue-row .venue-media {
+  height: clamp(22rem, 32vw, 30rem);
+}
+
+.venue-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.venue-media-wide img {
+  object-position: center;
+}
+
+.travel-times {
+  display: grid;
+  max-width: 31rem;
+  margin: 1.8rem 0 1.45rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.travel-times div {
+  padding: 1rem 1rem 1rem 0;
+}
+
+.travel-times div + div {
+  padding-left: 1rem;
+  border-left: 1px solid var(--rule);
+}
+
+.travel-times dt {
+  color: rgba(39, 51, 50, 0.7);
+  font: 500 0.63rem/1.3 var(--ui);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.travel-times dd {
+  margin: 0.25rem 0 0;
+  color: var(--moss);
+  font-size: 1.45rem;
+}
+
+.venue-link {
+  display: inline-flex;
+  padding: 0.55rem 0 0.45rem;
+  align-items: center;
+  border-bottom: 1px solid var(--moss);
+  gap: 1.2rem;
+  font: 500 0.68rem/1 var(--ui);
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 180ms ease, border-color 180ms ease, gap 180ms ease;
+}
+
+.venue-link:hover,
+.venue-link:focus-visible {
+  color: var(--coral);
+  border-color: var(--coral);
+  gap: 1.55rem;
+}
+
+.getting-around {
+  color: var(--paper);
+  background: var(--moss);
+}
+
+.getting-around-inner {
+  width: min(1380px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: clamp(5rem, 8vw, 8rem) 0 clamp(4.5rem, 7vw, 6.5rem);
+  text-align: center;
+}
+
+.getting-around h2 {
+  margin: 0;
+  color: var(--paper);
+  font-size: clamp(4rem, 7vw, 6.8rem);
+  font-weight: 400;
+  line-height: 0.9;
+}
+
+.getting-around-divider {
+  width: 8rem;
+  margin: 1.25rem auto 1rem;
+}
+
+.transport-warning {
+  margin: 0;
+  font-size: clamp(1.55rem, 2.6vw, 2.35rem);
+  line-height: 1.25;
+}
+
+.transport-support {
+  max-width: 48rem;
+  margin: 0.85rem auto 0;
+  color: rgba(250, 247, 241, 0.78);
+  font: 400 0.82rem/1.7 var(--ui);
+}
+
+.stations,
+.taxis {
+  margin-top: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+.stations h3,
+.taxis h3 {
+  margin: 0 0 2.25rem;
+  color: var(--paper);
+  font: 500 0.72rem/1 var(--ui);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.station-line {
+  position: relative;
+  display: grid;
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 0;
+  grid-template-columns: repeat(3, 1fr);
+  list-style: none;
+}
+
+.station-line::before {
+  position: absolute;
+  top: 0.45rem;
+  right: 16.5%;
+  left: 16.5%;
+  height: 1px;
+  content: "";
+  background: rgba(250, 247, 241, 0.65);
+}
+
+.station-line li {
+  position: relative;
+  padding-top: 1.8rem;
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
+}
+
+.station-line li::before {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 0.45rem);
+  z-index: 1;
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 1px solid var(--paper);
+  border-radius: 50%;
+  content: "";
+  background: var(--moss);
+}
+
+.taxi-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  list-style: none;
+}
+
+.taxi-list li {
+  display: flex;
+  min-height: 7.5rem;
+  padding: 0 1rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.taxi-list li + li {
+  border-left: 1px solid rgba(250, 247, 241, 0.38);
+}
+
+.taxi-list span {
+  font-size: 1.25rem;
+  line-height: 1.1;
+}
+
+.taxi-list small {
+  min-height: 1.9rem;
+  margin-top: 0.25rem;
+  color: rgba(250, 247, 241, 0.68);
+  font: 400 0.62rem/1.35 var(--ui);
+}
+
+.taxi-list a {
+  margin-top: 0.8rem;
+  color: #f3a08f;
+  font: 400 clamp(0.85rem, 1.3vw, 1.1rem)/1 var(--ui);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+.journey-note {
+  max-width: 50rem;
+  margin: 4rem auto 0;
+  color: rgba(250, 247, 241, 0.65);
+  font: 400 0.68rem/1.7 var(--ui);
+}
+
+.travel-signoff {
+  display: flex;
+  min-height: 17rem;
+  padding: 3.5rem 1.5rem 2rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--moss);
+  background: var(--paper);
+}
+
+.travel-signoff p {
+  margin: 0;
+  font-size: clamp(3.2rem, 6vw, 5.5rem);
+  line-height: 1;
+}
+
+.travel-signoff img {
+  width: 8rem;
+  margin-top: 1.4rem;
+}
+
+.getting-around-botanical {
+  min-height: clamp(12rem, 24vw, 22rem);
+  margin-top: -2rem;
+  background: var(--paper) url("assets/botanical-border.jpg") center bottom / cover no-repeat;
+}
+
+@media (max-width: 900px) {
+  .accommodation-page .site-nav {
+    gap: 1.4rem;
+  }
+
+  .venue-featured,
+  .venue-row {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+
+  .venue-featured .venue-media,
+  .venue-row .venue-media {
+    height: clamp(24rem, 68vw, 34rem);
+  }
+
+  .venue-featured .venue-media {
+    order: -1;
+  }
+
+  .venue-row-reverse .venue-media,
+  .venue-row-reverse .venue-copy {
+    order: initial;
+  }
+
+  .taxi-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .taxi-list li,
+  .taxi-list li + li {
+    min-height: 9rem;
+    border: 0;
+    border-bottom: 1px solid rgba(250, 247, 241, 0.28);
+  }
+
+  .taxi-list li:nth-child(odd) {
+    border-right: 1px solid rgba(250, 247, 241, 0.28);
+  }
+
+  .taxi-list li:last-child {
+    grid-column: 1 / -1;
+    border-right: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .accommodation-page .event-header {
+    min-height: 7.25rem;
+    padding: 0.65rem 1.25rem;
+    justify-content: center;
+  }
+
+  .accommodation-page .header-mark {
+    position: static;
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .accommodation-page .site-nav {
+    display: none;
+  }
+
+  .accommodation-hero {
+    min-height: 38rem;
+    padding: 4.6rem 1.1rem 5rem;
+  }
+
+  .accommodation-hero h1 {
+    font-size: clamp(3rem, 13vw, 4rem);
+    line-height: 0.85;
+  }
+
+  .accommodation-hero-copy > p:not(.booking-note) {
+    max-width: 19rem;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 0.82rem;
+  }
+
+  .booking-note {
+    display: block;
+    max-width: 20rem;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .booking-note::before {
+    display: block;
+    margin: 0 0 0.35rem;
+  }
+
+  .hero-floral {
+    bottom: -0.25rem;
+    width: 22rem;
+    opacity: 0.78;
+  }
+
+  .hero-floral-left {
+    left: -11rem;
+  }
+
+  .hero-floral-right {
+    right: -11rem;
+  }
+
+  .venue-list {
+    padding-top: 1.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  .venue-featured,
+  .venue-row {
+    padding: 2.5rem 0 3.5rem;
+    gap: 2.25rem;
+  }
+
+  .venue-featured .venue-media,
+  .venue-row .venue-media {
+    height: min(82vw, 25rem);
+  }
+
+  .venue-media-wide {
+    height: min(62vw, 18rem) !important;
+  }
+
+  .venue h2 {
+    font-size: clamp(3.15rem, 14vw, 4.2rem);
+  }
+
+  .venue-copy > p:not(.venue-place, .pow-intro, .personal-pick, .pow-breakfast, .venue-caveat, .venue-contact) {
+    font-size: 0.79rem;
+    line-height: 1.75;
+  }
+
+  .travel-times {
+    margin-top: 1.5rem;
+  }
+
+  .travel-times dd {
+    font-size: 1.25rem;
+  }
+
+  .getting-around-inner {
+    width: calc(100% - 32px);
+    padding-top: 4.5rem;
+  }
+
+  .getting-around h2 {
+    font-size: clamp(3.75rem, 17vw, 5rem);
+  }
+
+  .transport-warning {
+    font-size: 1.65rem;
+  }
+
+  .station-line {
+    grid-template-columns: 1fr;
+  }
+
+  .station-line::before {
+    top: 0.7rem;
+    bottom: 0.7rem;
+    left: 0.45rem;
+    width: 1px;
+    height: auto;
+  }
+
+  .station-line li {
+    padding: 0.3rem 0 1.7rem 2rem;
+    text-align: left;
+  }
+
+  .station-line li::before {
+    top: 0.45rem;
+    left: 0;
+  }
+
+  .taxi-list {
+    grid-template-columns: 1fr;
+  }
+
+  .taxi-list li,
+  .taxi-list li:nth-child(odd),
+  .taxi-list li:last-child {
+    min-height: 8rem;
+    grid-column: auto;
+    border-right: 0;
+    border-bottom: 1px solid rgba(250, 247, 241, 0.28);
+  }
+
+  .taxi-list li:last-child {
+    border-bottom: 0;
+  }
+
+  .taxi-list a {
+    font-size: 1rem;
+  }
+
+  .travel-signoff {
+    min-height: 14rem;
+  }
+
+  .travel-signoff p {
+    font-size: clamp(3rem, 14vw, 4rem);
+    text-align: center;
+  }
+
+  .getting-around-botanical {
+    min-height: 14rem;
+    background-size: cover;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .venue-link {
+    transition: none;
+  }
+}

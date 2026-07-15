@@ -939,8 +939,29 @@ iframe:focus-visible {
 }
 
 .wedding-accommodation p {
-  margin-bottom: 0;
+  margin-bottom: 1.5rem;
   font: 400 0.86rem/1.8 var(--ui);
+}
+
+.accommodation-page-link {
+  display: inline-flex;
+  padding: 0.6rem 0 0.5rem;
+  align-items: center;
+  border-bottom: 1px solid var(--moss);
+  gap: 1.3rem;
+  color: var(--moss);
+  font: 500 0.68rem/1 var(--ui);
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 180ms ease, border-color 180ms ease, gap 180ms ease;
+}
+
+.accommodation-page-link:hover,
+.accommodation-page-link:focus-visible {
+  color: var(--coral);
+  border-color: var(--coral);
+  gap: 1.6rem;
 }
 
 .accommodation-sprig {
