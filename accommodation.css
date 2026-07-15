@@ -24,8 +24,7 @@
 .accommodation-hero {
   position: relative;
   display: grid;
-  min-height: clamp(31rem, 55vw, 45rem);
-  padding: clamp(5rem, 9vw, 8rem) 2rem clamp(4.5rem, 8vw, 7rem);
+  padding: clamp(3.75rem, 6vw, 5.75rem) 2rem clamp(4rem, 6.5vw, 6rem);
   place-items: center;
   overflow: hidden;
   isolation: isolate;
@@ -41,15 +40,18 @@
 .accommodation-hero h1 {
   margin: 0;
   color: var(--moss);
-  font-size: clamp(4rem, 7.2vw, 7rem);
+  font-size: clamp(3.8rem, 6.4vw, 6.25rem);
   font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 0.88;
 }
 
 .accommodation-divider {
-  width: clamp(8.5rem, 13vw, 11rem);
-  margin: 1.8rem auto 1.25rem;
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  margin: 1.8rem auto 1.4rem;
+  background: var(--coral);
 }
 
 .accommodation-hero-copy > p:not(.booking-note) {
@@ -73,23 +75,6 @@
   color: var(--coral);
   content: "❧";
   font-style: normal;
-}
-
-.hero-floral {
-  position: absolute;
-  z-index: 1;
-  bottom: -1.5rem;
-  width: clamp(24rem, 43vw, 44rem);
-  height: auto;
-  pointer-events: none;
-}
-
-.hero-floral-left {
-  left: min(-15rem, -11vw);
-}
-
-.hero-floral-right {
-  right: min(-15rem, -11vw);
 }
 
 .venue-list {
@@ -287,8 +272,11 @@
 }
 
 .getting-around-divider {
-  width: 8rem;
-  margin: 1.25rem auto 1rem;
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  margin: 1.6rem auto 1.4rem;
+  background: #f3a08f;
 }
 
 .transport-warning {
@@ -405,34 +393,6 @@
   font: 400 0.68rem/1.7 var(--ui);
 }
 
-.travel-signoff {
-  display: flex;
-  min-height: 17rem;
-  padding: 3.5rem 1.5rem 2rem;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--moss);
-  background: var(--paper);
-}
-
-.travel-signoff p {
-  margin: 0;
-  font-size: clamp(3.2rem, 6vw, 5.5rem);
-  line-height: 1;
-}
-
-.travel-signoff img {
-  width: 8rem;
-  margin-top: 1.4rem;
-}
-
-.getting-around-botanical {
-  min-height: clamp(12rem, 24vw, 22rem);
-  margin-top: -2rem;
-  background: var(--paper) url("assets/botanical-border.jpg") center bottom / cover no-repeat;
-}
-
 @media (max-width: 900px) {
   .accommodation-page .site-nav {
     gap: 1.4rem;
@@ -498,8 +458,7 @@
   }
 
   .accommodation-hero {
-    min-height: 38rem;
-    padding: 4.6rem 1.1rem 5rem;
+    padding: 3.25rem 1.1rem 4rem;
   }
 
   .accommodation-hero h1 {
@@ -524,20 +483,6 @@
   .booking-note::before {
     display: block;
     margin: 0 0 0.35rem;
-  }
-
-  .hero-floral {
-    bottom: -0.25rem;
-    width: 22rem;
-    opacity: 0.78;
-  }
-
-  .hero-floral-left {
-    left: -11rem;
-  }
-
-  .hero-floral-right {
-    right: -11rem;
   }
 
   .venue-list {
@@ -633,19 +578,6 @@
     font-size: 1rem;
   }
 
-  .travel-signoff {
-    min-height: 14rem;
-  }
-
-  .travel-signoff p {
-    font-size: clamp(3rem, 14vw, 4rem);
-    text-align: center;
-  }
-
-  .getting-around-botanical {
-    min-height: 14rem;
-    background-size: cover;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
