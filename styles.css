@@ -747,6 +747,28 @@ iframe:focus-visible {
   line-height: 1.05;
 }
 
+.venue-website-link {
+  display: inline-flex;
+  min-height: 2rem;
+  margin-top: 0.85rem;
+  padding: 0.45rem 0.8rem;
+  align-items: center;
+  border: 1px solid rgba(89, 101, 73, 0.46);
+  color: var(--moss);
+  font: 500 0.62rem/1 var(--ui);
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.venue-website-link:hover,
+.venue-website-link:focus-visible {
+  border-color: var(--moss);
+  color: var(--ink);
+  background: rgba(232, 231, 217, 0.58);
+}
+
 .wedding-hero-photo {
   position: relative;
   z-index: 1;
