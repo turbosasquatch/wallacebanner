@@ -53,10 +53,12 @@
 }
 
 .booking-note::before {
+  width: 1.15rem;
+  height: 1.15rem;
   margin-right: 0.75rem;
-  color: var(--coral);
-  content: "❧";
-  font-style: normal;
+  flex: 0 0 auto;
+  content: "";
+  background: url("assets/floral-rule-ornament-sage.png") center / contain no-repeat;
 }
 
 .venue-list {

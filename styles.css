@@ -340,10 +340,11 @@ iframe:focus-visible {
   background: var(--rule);
 }
 
-.floral-rule b {
-  font-size: 1.9rem;
-  font-weight: 400;
-  line-height: 1;
+.floral-rule img {
+  width: 2rem;
+  height: 2rem;
+  flex: 0 0 auto;
+  object-fit: contain;
 }
 
 .floral-rule.compact {
@@ -355,9 +356,9 @@ iframe:focus-visible {
   width: 4.2rem;
 }
 
-.floral-rule.compact b {
-  color: var(--sage);
-  font-size: 1.35rem;
+.floral-rule.compact img {
+  width: 1.65rem;
+  height: 1.65rem;
 }
 
 .short-rule {
