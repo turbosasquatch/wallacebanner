@@ -128,8 +128,21 @@
   object-fit: contain;
 }
 
+.engagement-page .information-cards {
+  width: min(1940px, calc(100% - 64px));
+  padding-bottom: 3.75rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: clamp(0.8rem, 1.2vw, 1.6rem);
+}
+
+.engagement-page .information-card {
+  min-height: 24rem;
+  padding: 2.5rem clamp(1.1rem, 1.6vw, 2rem);
+}
+
 .engagement-page .information-card h2 {
   margin-top: 0.9rem;
+  font-size: clamp(1.8rem, 2.15vw, 2.5rem);
 }
 
 .engagement-page .engagement-rsvp {
@@ -209,6 +222,15 @@
 }
 
 @media (max-width: 900px) {
+  .engagement-page .information-cards {
+    width: var(--page);
+    grid-template-columns: 1fr;
+  }
+
+  .engagement-page .information-card {
+    min-height: 0;
+  }
+
   .engagement-hero {
     min-height: clamp(45rem, calc(100svh - var(--site-header-height)), 53rem);
     grid-template-rows: minmax(30rem, 1fr) clamp(15rem, 42vw, 20rem);
