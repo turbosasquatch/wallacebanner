@@ -10,6 +10,7 @@
   --display: "Cormorant Garamond", Georgia, serif;
   --ui: "Montserrat", Arial, sans-serif;
   --page: min(1180px, calc(100% - 64px));
+  --site-header-height: 5.25rem;
 }
 
 * {
@@ -63,23 +64,27 @@ a {
 }
 
 .site-header {
-  position: relative;
-  z-index: 10;
+  position: sticky;
+  top: 0;
+  z-index: 50;
   display: flex;
   width: 100%;
-  min-height: 7.75rem;
-  padding: 1rem max(4vw, 2rem);
+  min-height: var(--site-header-height);
+  padding: 0.45rem max(4vw, 2rem);
   align-items: center;
   justify-content: flex-end;
   border-bottom: 1px solid rgba(89, 101, 73, 0.2);
-  background: rgba(250, 247, 241, 0.96);
+  background: rgba(250, 247, 241, 0.94);
+  box-shadow: 0 0.35rem 1.4rem rgba(39, 51, 50, 0.05);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
 }
 
 .header-mark {
   position: absolute;
   left: max(4vw, 2rem);
-  width: 6.25rem;
-  height: 6.25rem;
+  width: 4.35rem;
+  height: 4.35rem;
   border-radius: 50%;
   overflow: hidden;
 }
@@ -93,14 +98,14 @@ a {
 .site-nav {
   display: flex;
   align-items: center;
-  gap: clamp(2rem, 4vw, 4rem);
+  gap: clamp(1.35rem, 3vw, 3rem);
 }
 
 .site-nav a {
   position: relative;
-  padding: 0.65rem 0 0.55rem;
-  font: 500 0.72rem/1 var(--ui);
-  letter-spacing: 0.15em;
+  padding: 0.55rem 0 0.5rem;
+  font: 500 0.68rem/1 var(--ui);
+  letter-spacing: 0.13em;
   text-decoration: none;
   text-transform: uppercase;
 }
@@ -124,8 +129,12 @@ a {
   transform: scaleX(1);
 }
 
-.engagement-page .site-nav a[aria-current="page"] {
+.site-nav a[aria-current="page"] {
   color: var(--coral);
+}
+
+.mobile-nav {
+  display: none;
 }
 
 a:focus-visible,
@@ -149,7 +158,7 @@ iframe:focus-visible {
 .home-content {
   display: flex;
   width: min(47rem, 62vw);
-  min-height: calc(100svh - 7.75rem);
+  min-height: calc(100svh - var(--site-header-height));
   margin: 0 auto;
   padding: 2rem 1.5rem 4.5rem;
   flex-direction: column;
@@ -1166,13 +1175,8 @@ iframe:focus-visible {
     --page: min(100% - 40px, 46rem);
   }
 
-  .site-header {
-    min-height: 6.5rem;
-  }
-
-  .header-mark {
-    width: 5.2rem;
-    height: 5.2rem;
+  .site-nav {
+    gap: 1.25rem;
   }
 
   .engagement-hero {
@@ -1280,37 +1284,94 @@ iframe:focus-visible {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 760px) {
   :root {
-    --page: calc(100% - 32px);
+    --site-header-height: 4.75rem;
   }
 
   .site-header {
-    min-height: 5.75rem;
-    padding: 0.7rem 1rem 0.7rem 5.5rem;
+    padding: 0.4rem 1.1rem;
+    justify-content: center;
   }
 
   .header-mark {
-    left: 0.75rem;
-    width: 4.3rem;
-    height: 4.3rem;
+    position: static;
+    width: 3.85rem;
+    height: 3.85rem;
   }
 
-  .site-nav {
-    width: 100%;
-    gap: clamp(0.75rem, 4vw, 1.4rem);
-    justify-content: flex-end;
-  }
-
-  .site-nav a {
-    font-size: 0.59rem;
-    letter-spacing: 0.08em;
-  }
-
-  .home-header .site-nav a:first-child,
-  .event-header .site-nav a:first-child,
-  .nav-party {
+  .site-header > .site-nav {
     display: none;
+  }
+
+  .mobile-nav {
+    position: absolute;
+    top: 50%;
+    right: 1.1rem;
+    display: block;
+    transform: translateY(-50%);
+  }
+
+  .mobile-nav summary {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.65rem 0.45rem;
+    cursor: pointer;
+    list-style: none;
+    place-content: center;
+    gap: 0.42rem;
+  }
+
+  .mobile-nav summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav summary span {
+    display: block;
+    width: 1.65rem;
+    height: 2px;
+    background: var(--moss);
+    transition: transform 180ms ease;
+  }
+
+  .mobile-nav[open] summary span:first-child {
+    transform: translateY(0.22rem) rotate(45deg);
+  }
+
+  .mobile-nav[open] summary span:last-child {
+    transform: translateY(-0.22rem) rotate(-45deg);
+  }
+
+  .mobile-nav nav {
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    right: -0.35rem;
+    display: grid;
+    min-width: 13.5rem;
+    padding: 0.55rem 0;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    box-shadow: 0 0.8rem 2rem rgba(39, 51, 50, 0.12);
+  }
+
+  .mobile-nav nav a {
+    padding: 0.72rem 1.1rem;
+    font: 500 0.65rem/1 var(--ui);
+    letter-spacing: 0.12em;
+    text-align: right;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .mobile-nav nav a[aria-current="page"] {
+    color: var(--coral);
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --page: calc(100% - 32px);
   }
 
   .home-shell {

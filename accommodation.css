@@ -3,24 +3,6 @@
   background: var(--paper);
 }
 
-.accommodation-page .event-header {
-  min-height: 7rem;
-  padding: 0.75rem max(4vw, 2rem);
-}
-
-.accommodation-page .header-mark {
-  width: 5.75rem;
-  height: 5.75rem;
-}
-
-.accommodation-page .site-nav {
-  gap: clamp(1.6rem, 3.2vw, 3.5rem);
-}
-
-.accommodation-page .site-nav a[aria-current="page"] {
-  color: var(--coral);
-}
-
 .accommodation-hero {
   position: relative;
   display: grid;
@@ -394,10 +376,6 @@
 }
 
 @media (max-width: 900px) {
-  .accommodation-page .site-nav {
-    gap: 1.4rem;
-  }
-
   .venue-featured,
   .venue-row {
     min-height: 0;
@@ -441,22 +419,6 @@
 }
 
 @media (max-width: 640px) {
-  .accommodation-page .event-header {
-    min-height: 7.25rem;
-    padding: 0.65rem 1.25rem;
-    justify-content: center;
-  }
-
-  .accommodation-page .header-mark {
-    position: static;
-    width: 6rem;
-    height: 6rem;
-  }
-
-  .accommodation-page .site-nav {
-    display: none;
-  }
-
   .accommodation-hero {
     padding: 3.25rem 1.1rem 4rem;
   }

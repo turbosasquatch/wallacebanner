@@ -4,20 +4,6 @@
   overflow-x: hidden;
 }
 
-.engagement-page .event-header {
-  min-height: 7rem;
-  padding: 0.75rem max(4vw, 2rem);
-}
-
-.engagement-page .header-mark {
-  width: 5.75rem;
-  height: 5.75rem;
-}
-
-.mobile-nav {
-  display: none;
-}
-
 .engagement-hero {
   position: relative;
   display: grid;
@@ -223,12 +209,8 @@
 }
 
 @media (max-width: 900px) {
-  .engagement-page .event-header {
-    min-height: 6.5rem;
-  }
-
   .engagement-hero {
-    min-height: clamp(45rem, calc(100svh - 6.5rem), 53rem);
+    min-height: clamp(45rem, calc(100svh - var(--site-header-height)), 53rem);
     grid-template-rows: minmax(30rem, 1fr) clamp(15rem, 42vw, 20rem);
   }
 
@@ -264,88 +246,8 @@
 }
 
 @media (max-width: 640px) {
-  .engagement-page .event-header {
-    min-height: 7.25rem;
-    padding: 0.65rem 1.25rem;
-    justify-content: center;
-  }
-
-  .engagement-page .header-mark {
-    position: static;
-    width: 6rem;
-    height: 6rem;
-  }
-
-  .engagement-page .site-nav {
-    display: none;
-  }
-
-  .mobile-nav {
-    position: absolute;
-    top: 50%;
-    right: 1.35rem;
-    display: block;
-    transform: translateY(-50%);
-  }
-
-  .mobile-nav summary {
-    display: grid;
-    width: 3rem;
-    height: 3rem;
-    padding: 0.7rem 0.45rem;
-    cursor: pointer;
-    list-style: none;
-    place-content: center;
-    gap: 0.48rem;
-  }
-
-  .mobile-nav summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .mobile-nav summary span {
-    display: block;
-    width: 1.8rem;
-    height: 2px;
-    background: var(--moss);
-    transition: transform 180ms ease;
-  }
-
-  .mobile-nav[open] summary span:first-child {
-    transform: translateY(0.25rem) rotate(45deg);
-  }
-
-  .mobile-nav[open] summary span:last-child {
-    transform: translateY(-0.25rem) rotate(-45deg);
-  }
-
-  .mobile-nav nav {
-    position: absolute;
-    top: calc(100% + 0.75rem);
-    right: -0.6rem;
-    display: grid;
-    min-width: 12rem;
-    padding: 0.75rem 0;
-    border: 1px solid var(--rule);
-    background: var(--paper);
-    box-shadow: 0 0.8rem 2rem rgba(39, 51, 50, 0.1);
-  }
-
-  .mobile-nav nav a {
-    padding: 0.8rem 1.25rem;
-    font: 500 0.68rem/1 var(--ui);
-    letter-spacing: 0.13em;
-    text-align: right;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-
-  .mobile-nav nav a[aria-current="page"] {
-    color: var(--coral);
-  }
-
   .engagement-hero {
-    min-height: clamp(43rem, calc(100svh - 7.25rem), 49rem);
+    min-height: clamp(43rem, calc(100svh - var(--site-header-height)), 49rem);
     grid-template-rows: minmax(30rem, 1fr) clamp(13rem, 58vw, 17rem);
   }
 
