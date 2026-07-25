@@ -117,15 +117,10 @@
   object-fit: contain;
 }
 
-.upload-limits,
 .upload-note {
   color: var(--moss);
   font: 500 0.67rem/1.45 var(--ui);
   letter-spacing: 0.06em;
-}
-
-.upload-limits {
-  margin: 0.8rem 0 0;
 }
 
 .form-message {
@@ -217,10 +212,16 @@
   place-items: center;
   border: 0;
   border-radius: 50%;
-  color: var(--moss);
-  background: var(--soft-sage);
+  color: var(--paper);
+  background: var(--moss);
   cursor: pointer;
   font: 600 0.67rem/1 var(--ui);
+}
+
+.upload-card-action img {
+  width: 1.15rem;
+  height: 1.15rem;
+  object-fit: contain;
 }
 
 .upload-card-action.is-complete::before {

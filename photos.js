@@ -1,5 +1,4 @@
 const UPLOAD_API_URL = "https://claire-george-party-uploads.claire-george-wedding-2026.workers.dev/upload";
-const MAX_FILES = 10;
 const MAX_BYTES = 25 * 1024 * 1024;
 const ALLOWED_TYPES = new Set([
   "image/jpeg", "image/png", "image/webp", "image/gif", "image/heic", "image/heif",
@@ -74,7 +73,13 @@ function renderQueue() {
       action.disabled = true;
       action.setAttribute("aria-label", `${item.file.name} uploading`);
     } else {
-      action.textContent = "Remove";
+      const removeIcon = document.createElement("img");
+      removeIcon.src = "assets/photos/remove-icon.png";
+      removeIcon.alt = "";
+      removeIcon.width = 24;
+      removeIcon.height = 24;
+      action.setAttribute("aria-label", `Remove ${item.file.name}`);
+      action.append(removeIcon);
       action.addEventListener("click", () => removeItem(item.id));
     }
     card.append(preview, copy, action);
@@ -86,7 +91,6 @@ function renderQueue() {
 }
 
 function validateFiles(files) {
-  if (files.length > MAX_FILES) return `Please choose no more than ${MAX_FILES} files at a time.`;
   const invalid = files.find((file) => !ALLOWED_TYPES.has(file.type) || file.size > MAX_BYTES);
   if (!invalid) return "";
   if (invalid.size > MAX_BYTES) return `${invalid.name} is larger than 25 MB.`;
