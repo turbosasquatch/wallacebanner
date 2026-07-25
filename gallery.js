@@ -1,13 +1,11 @@
 const GALLERY_API = "https://claire-george-party-uploads.claire-george-wedding-2026.workers.dev";
 
 const status = document.querySelector("#gallery-status");
-const featured = document.querySelector("#featured-media");
 const grid = document.querySelector("#gallery-grid");
 const loadMore = document.querySelector("#load-more");
 const viewer = document.querySelector("#media-viewer");
 const viewerContent = document.querySelector("#viewer-content");
 let nextCursor = null;
-let hasFeatured = false;
 
 function isVideo(item) { return item.contentType.startsWith("video/"); }
 
@@ -32,12 +30,12 @@ function openViewer(item) {
   viewer.showModal();
 }
 
-function card(item, isFeature = false) {
+function card(item) {
   const button = document.createElement("button");
   button.type = "button";
-  button.className = isFeature ? "featured-card" : "gallery-card";
+  button.className = "gallery-card";
   button.setAttribute("aria-label", `Open ${isVideo(item) ? "video" : "photo"}`);
-  button.append(mediaElement(item, { eager: isFeature }));
+  button.append(mediaElement(item));
   if (isVideo(item)) {
     const label = document.createElement("span");
     label.className = "video-label";
@@ -49,12 +47,6 @@ function card(item, isFeature = false) {
 }
 
 function render(items) {
-  if (!hasFeatured && items.length) {
-    featured.hidden = false;
-    featured.append(card(items[0], true));
-    hasFeatured = true;
-    items = items.slice(1);
-  }
   grid.append(...items.map((item) => card(item)));
 }
 
@@ -75,7 +67,7 @@ async function loadMoments({ more = false } = {}) {
     nextCursor = data.nextCursor;
     loadMore.hidden = !nextCursor;
     status.classList.remove("is-error");
-    status.textContent = hasFeatured ? "" : "The album is waiting for its first moment.";
+    status.textContent = grid.childElementCount ? "" : "The album is waiting for its first moment.";
   } catch (error) {
     status.classList.add("is-error");
     status.textContent = error.message;
