@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#faf7f1">
+    <meta name="description" content="A collection of shared photos and videos from Claire and George's celebration.">
+    <title>Our Photo Album | Claire &amp; George</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260725-2">
+    <link rel="stylesheet" href="gallery.css?v=20260725-1">
+    <script src="gallery.js?v=20260725-1" defer></script>
+  </head>
+  <body class="gallery-page">
+    <a class="skip-link" href="#main-content">Skip to photo album</a>
+
+    <header class="site-header event-header" aria-label="Primary navigation">
+      <a class="header-mark" href="index.html" aria-label="Claire and George home"><img src="assets/claire-george-mark.png" alt="" width="92" height="92"></a>
+      <nav class="site-nav" aria-label="Event pages">
+        <a href="index.html">Home</a><a href="engagement.html">Engagement</a><a href="wedding.html">Wedding</a><a href="accommodation.html">Accommodation</a><a href="our-story.html">Our Story</a><a href="gallery.html" aria-current="page">Album</a>
+      </nav>
+      <details class="mobile-nav">
+        <summary aria-label="Open navigation"><span></span><span></span></summary>
+        <nav aria-label="Mobile event pages">
+          <a href="index.html">Home</a><a href="engagement.html">Engagement</a><a href="wedding.html">Wedding</a><a href="accommodation.html">Accommodation</a><a href="our-story.html">Our Story</a><a href="gallery.html" aria-current="page">Our Photo Album</a>
+        </nav>
+      </details>
+    </header>
+
+    <main id="main-content" class="gallery-main">
+      <img class="gallery-sprig gallery-sprig-left" src="assets/wedding-sprig-sage.png" alt="" width="760" height="296" aria-hidden="true">
+      <section class="gallery-intro" aria-labelledby="gallery-title">
+        <img class="gallery-mark" src="assets/claire-george-mark.png" alt="" width="92" height="92">
+        <h1 id="gallery-title">Our Photo Album</h1>
+        <img class="gallery-divider" src="assets/home-divider-sage.png" alt="" width="1100" height="261">
+        <p>A few moments from a very happy day</p>
+      </section>
+
+      <section class="album" aria-label="Shared party photos and videos">
+        <div id="gallery-status" class="gallery-status" role="status" aria-live="polite">Gathering the moments…</div>
+        <div id="featured-media" class="featured-media" hidden></div>
+        <div id="gallery-grid" class="gallery-grid"></div>
+        <button id="load-more" class="load-more" type="button" hidden>Load more moments</button>
+      </section>
+      <img class="gallery-sprig gallery-sprig-right" src="assets/wedding-sprig-sage.png" alt="" width="760" height="296" aria-hidden="true">
+    </main>
+
+    <dialog id="media-viewer" class="media-viewer" aria-label="Photo or video viewer">
+      <button id="close-viewer" class="close-viewer" type="button">Close</button>
+      <div id="viewer-content"></div>
+    </dialog>
+  </body>
+</html>

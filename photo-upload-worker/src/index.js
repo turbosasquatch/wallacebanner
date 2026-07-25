@@ -16,11 +16,86 @@ function corsHeaders(request) {
   const allowedOrigin = allowedOrigins.has(origin) ? origin : "https://wallacebanner.co.uk";
   return {
     "Access-Control-Allow-Origin": allowedOrigin,
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, X-Event-Code, X-File-Name, X-Uploader-Name",
     "Access-Control-Max-Age": "86400",
     "Vary": "Origin"
   };
+}
+
+function mediaUrl(request, key) {
+  return `${new URL(request.url).origin}/media/${encodeURIComponent(key)}`;
+}
+
+function contentTypeForKey(key) {
+  const extension = key.split(".").pop()?.toLowerCase();
+  return ({
+    jpg: "image/jpeg", jpeg: "image/jpeg", png: "image/png", webp: "image/webp", gif: "image/gif",
+    heic: "image/heic", heif: "image/heif", mp4: "video/mp4", mov: "video/quicktime", webm: "video/webm"
+  })[extension] || "application/octet-stream";
+}
+
+function galleryItem(request, object) {
+  return {
+    id: object.key,
+    url: mediaUrl(request, object.key),
+    contentType: object.httpMetadata?.contentType === "application/octet-stream"
+      ? contentTypeForKey(object.key)
+      : object.httpMetadata?.contentType || contentTypeForKey(object.key),
+    uploadedAt: object.customMetadata?.uploadedAt || object.uploaded?.toISOString?.() || null
+  };
+}
+
+async function handleGallery(request, env) {
+  const url = new URL(request.url);
+  const listed = await env.UPLOADS.list({
+    prefix: "originals/",
+    cursor: url.searchParams.get("cursor") || undefined,
+    limit: 100
+  });
+  const items = listed.objects
+    .map((object) => galleryItem(request, object))
+    .sort((a, b) => (b.uploadedAt || "").localeCompare(a.uploadedAt || ""));
+  return new Response(JSON.stringify({ items, nextCursor: listed.truncated ? listed.cursor : null }), {
+    headers: {
+      "Cache-Control": "no-store",
+      "Content-Type": "application/json; charset=utf-8",
+      ...corsHeaders(request)
+    }
+  });
+}
+
+async function handleMedia(request, env, encodedKey) {
+  let key;
+  try {
+    key = decodeURIComponent(encodedKey);
+  } catch {
+    return json(request, { error: "Not found." }, 404);
+  }
+  if (!key.startsWith("originals/")) return json(request, { error: "Not found." }, 404);
+
+  const rangeHeader = request.headers.get("Range");
+  const match = rangeHeader?.match(/^bytes=(\d+)-(\d*)$/);
+  const range = match
+    ? { offset: Number(match[1]), length: match[2] ? Number(match[2]) - Number(match[1]) + 1 : undefined }
+    : undefined;
+  if (range && (!Number.isSafeInteger(range.offset) || range.offset < 0 || (range.length !== undefined && (!Number.isSafeInteger(range.length) || range.length < 1)))) {
+    return new Response(null, { status: 416, headers: { "Accept-Ranges": "bytes", ...corsHeaders(request) } });
+  }
+
+  const object = await env.UPLOADS.get(key, range ? { range } : undefined);
+  if (!object) return json(request, { error: "Not found." }, 404);
+  const headers = new Headers({
+    "Accept-Ranges": "bytes",
+    "Cache-Control": "public, max-age=31536000, immutable",
+    "Content-Disposition": "inline",
+    "Content-Type": object.httpMetadata?.contentType || "application/octet-stream"
+  });
+  if (range && object.range) {
+    headers.set("Content-Range", `bytes ${object.range.offset}-${object.range.offset + object.range.length - 1}/${object.size}`);
+  }
+  for (const [name, value] of Object.entries(corsHeaders(request))) headers.set(name, value);
+  return new Response(object.body, { status: range && object.range ? 206 : 200, headers });
 }
 
 function json(request, body, status = 200) {
@@ -68,7 +143,10 @@ export class RateLimiter {
 export default {
   async fetch(request, env) {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: corsHeaders(request) });
-    if (request.method !== "POST" || new URL(request.url).pathname !== "/upload") return json(request, { error: "Not found." }, 404);
+    const path = new URL(request.url).pathname;
+    if (request.method === "GET" && path === "/gallery") return handleGallery(request, env);
+    if (request.method === "GET" && path.startsWith("/media/")) return handleMedia(request, env, path.slice("/media/".length));
+    if (request.method !== "POST" || path !== "/upload") return json(request, { error: "Not found." }, 404);
     if (Date.now() >= UPLOADS_CLOSE_AT) return json(request, { error: "The photo collection is now closed." }, 403);
     if (request.headers.get("X-Event-Code") !== env.EVENT_CODE) return json(request, { error: "That event code is not recognised." }, 401);
 

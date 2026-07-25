@@ -1,0 +1,43 @@
+.gallery-page { overflow-x: hidden; }
+
+.gallery-main {
+  position: relative;
+  min-height: calc(100vh - var(--site-header-height));
+  padding: clamp(3rem, 7vw, 6rem) 1.25rem clamp(4.5rem, 8vw, 8rem);
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 19%, rgba(232, 231, 217, 0.56), transparent 30rem), var(--paper);
+}
+
+.gallery-intro, .album { position: relative; z-index: 1; width: min(100%, 68rem); margin: 0 auto; }
+.gallery-intro { text-align: center; }
+.gallery-mark { width: 4.2rem; height: 4.2rem; margin: 0 auto 1.35rem; border-radius: 50%; }
+.gallery-intro h1 { margin: 0; color: var(--ink); font: 400 clamp(4rem, 9vw, 6.8rem)/.84 var(--display); letter-spacing: -.055em; }
+.gallery-divider { display: block; width: min(8.4rem, 37vw); height: auto; margin: 1.15rem auto .85rem; }
+.gallery-intro p { margin: 0; color: var(--ink); font: 400 clamp(1.12rem, 2.6vw, 1.4rem)/1.3 var(--display); }
+.album { margin-top: clamp(2.7rem, 6vw, 4.5rem); }
+.gallery-status { min-height: 1.3rem; margin: 0 0 1rem; color: var(--moss); text-align: center; font: 500 .68rem/1.4 var(--ui); letter-spacing: .08em; }
+.gallery-status.is-error { color: #bd4c3a; }
+
+.featured-media { margin-bottom: 1.3rem; overflow: hidden; border: 1px solid rgba(89, 101, 73, .2); background: var(--soft-sage); box-shadow: 0 1rem 2.7rem rgba(39, 51, 50, .11); }
+.featured-media button { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+.featured-media img, .featured-media video { display: block; width: 100%; aspect-ratio: 16 / 8.7; object-fit: cover; }
+
+.gallery-grid { column-count: 3; column-gap: 1.1rem; }
+.gallery-card { position: relative; display: block; width: 100%; margin: 0 0 1.1rem; padding: 0; overflow: hidden; break-inside: avoid; border: 1px solid rgba(89, 101, 73, .18); background: var(--soft-sage); box-shadow: 0 .45rem 1.2rem rgba(39, 51, 50, .06); cursor: zoom-in; }
+.gallery-card img, .gallery-card video { display: block; width: 100%; min-height: 9rem; object-fit: cover; background: var(--soft-sage); transition: transform 360ms ease; }
+.gallery-card:hover img, .gallery-card:focus-visible img { transform: scale(1.035); }
+.video-label { position: absolute; right: .6rem; bottom: .6rem; padding: .38rem .55rem; color: var(--paper); background: rgba(39, 51, 50, .78); font: 600 .58rem/1 var(--ui); letter-spacing: .08em; text-transform: uppercase; }
+.load-more { display: block; margin: 1.25rem auto 0; padding: .85rem 1.2rem; border: 1px solid rgba(89, 101, 73, .45); border-radius: .2rem; color: var(--moss); background: rgba(255,255,255,.4); cursor: pointer; font: 600 .65rem/1 var(--ui); letter-spacing: .11em; text-transform: uppercase; }
+.load-more:hover, .load-more:focus-visible { color: var(--paper); background: var(--moss); }
+
+.gallery-sprig { position: absolute; z-index: 0; width: clamp(22rem, 49vw, 43rem); opacity: .38; pointer-events: none; }
+.gallery-sprig-left { top: 7.5rem; left: clamp(-28rem, -19vw, -11rem); transform: rotate(20deg); }
+.gallery-sprig-right { right: clamp(-28rem, -19vw, -11rem); bottom: 3rem; transform: rotate(205deg); }
+
+.media-viewer { width: min(96vw, 74rem); max-width: none; max-height: 94vh; padding: 3rem 1rem 1rem; overflow: auto; border: 0; background: rgba(28, 35, 34, .97); box-shadow: 0 1.3rem 4rem rgba(0,0,0,.4); }
+.media-viewer::backdrop { background: rgba(20, 27, 26, .82); }
+.media-viewer img, .media-viewer video { display: block; width: auto; max-width: 100%; max-height: calc(94vh - 4rem); margin: 0 auto; object-fit: contain; }
+.close-viewer { position: absolute; top: .85rem; right: 1rem; padding: .4rem; border: 0; color: var(--paper); background: transparent; cursor: pointer; font: 600 .64rem/1 var(--ui); letter-spacing: .1em; text-transform: uppercase; }
+
+@media (max-width: 700px) { .gallery-grid { column-count: 2; column-gap: .72rem; } .gallery-card { margin-bottom: .72rem; } .gallery-card img, .gallery-card video { min-height: 7.4rem; } }
+@media (max-width: 430px) { .gallery-grid { column-count: 1; } .gallery-card img, .gallery-card video { min-height: 11rem; } .gallery-main { padding-inline: 1rem; } }
