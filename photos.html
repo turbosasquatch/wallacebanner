@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#faf7f1">
+    <meta name="description" content="Share your photos and videos from Claire and George's celebration.">
+    <title>Share the Moments | Claire &amp; George</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260725-1">
+    <link rel="stylesheet" href="photos.css?v=20260725-1">
+    <script src="photos.js?v=20260725-1" defer></script>
+  </head>
+  <body class="photos-page">
+    <a class="skip-link" href="#main-content">Skip to upload form</a>
+
+    <header class="site-header event-header" aria-label="Primary navigation">
+      <a class="header-mark" href="index.html" aria-label="Claire and George home">
+        <img src="assets/claire-george-mark.png" alt="" width="92" height="92">
+      </a>
+      <nav class="site-nav" aria-label="Event pages">
+        <a href="index.html">Home</a>
+        <a href="engagement.html">Engagement</a>
+        <a href="wedding.html">Wedding</a>
+        <a href="accommodation.html">Accommodation</a>
+        <a href="our-story.html">Our Story</a>
+      </nav>
+      <details class="mobile-nav">
+        <summary aria-label="Open navigation"><span></span><span></span></summary>
+        <nav aria-label="Mobile event pages">
+          <a href="index.html">Home</a>
+          <a href="engagement.html">Engagement</a>
+          <a href="wedding.html">Wedding</a>
+          <a href="accommodation.html">Accommodation</a>
+          <a href="our-story.html">Our Story</a>
+        </nav>
+      </details>
+    </header>
+
+    <main id="main-content" class="upload-main">
+      <img class="photos-sprig photos-sprig-top-left" src="assets/wedding-sprig-sage.png" alt="" width="760" height="296" aria-hidden="true">
+      <img class="photos-sprig photos-sprig-top-right" src="assets/wedding-sprig-sage.png" alt="" width="760" height="296" aria-hidden="true">
+      <section class="upload-panel" aria-labelledby="upload-title">
+        <img class="upload-mark" src="assets/claire-george-mark.png" alt="" width="92" height="92">
+        <h1 id="upload-title">Share the<br>Moments</h1>
+        <img class="upload-divider" src="assets/home-divider-sage.png" alt="" width="1100" height="261">
+        <p class="upload-intro">Add your photos and videos from the party</p>
+
+        <form id="upload-form" novalidate>
+          <div class="field-group">
+            <label for="event-code">Event code</label>
+            <input id="event-code" name="event-code" type="password" inputmode="numeric" autocomplete="off" maxlength="12" required placeholder="Enter event code">
+          </div>
+          <div class="field-group">
+            <label for="uploader-name">Your name <span>(optional)</span></label>
+            <input id="uploader-name" name="uploader-name" type="text" autocomplete="name" maxlength="80" placeholder="So we know who shared them">
+          </div>
+          <input id="file-picker" type="file" accept="image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif,video/mp4,video/quicktime,video/webm" multiple hidden>
+          <button id="choose-files" class="upload-button" type="button">
+            <img src="assets/photos/upload-cloud.png" alt="" width="1254" height="1254">
+            <span>Choose photos &amp; videos</span>
+          </button>
+          <p class="upload-limits">Up to 10 files &middot; 25 MB each</p>
+          <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+          <div id="upload-queue" class="upload-queue" aria-live="polite"></div>
+          <button id="upload-all" class="submit-button" type="submit" hidden>Upload selected files</button>
+        </form>
+
+        <p class="upload-note">Uploads are open until 31 August. Thank you for helping us remember the day.</p>
+      </section>
+      <img class="photos-sprig photos-sprig-bottom-left" src="assets/wedding-sprig-sage.png" alt="" width="760" height="296" aria-hidden="true">
+      <img class="photos-sprig photos-sprig-bottom-right" src="assets/wedding-sprig-sage.png" alt="" width="760" height="296" aria-hidden="true">
+    </main>
+  </body>
+</html>

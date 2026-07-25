@@ -238,6 +238,12 @@
   background: var(--paper);
 }
 
+.engagement-upload-link {
+  display: block;
+  width: fit-content;
+  margin: 0.85rem auto 0;
+}
+
 .engagement-page .botanical-footer {
   min-height: clamp(16rem, 28vw, 25rem);
   margin-top: 0;

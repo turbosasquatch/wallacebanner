@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "claire-george-party-uploads",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-25",
+  "account_id": "d3896db17ee5c7770c6c0c1478a5052a",
+  "workers_dev": true,
+  "r2_buckets": [
+    {
+      "binding": "UPLOADS",
+      "bucket_name": "claire-george-party-uploads-2026"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "RATE_LIMITER",
+        "class_name": "RateLimiter"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["RateLimiter"]
+    }
+  ]
+}

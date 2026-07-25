@@ -1,0 +1,8 @@
+{
+  "name": "claire-george-party-uploads",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "wrangler": "^4.28.0"
+  }
+}
