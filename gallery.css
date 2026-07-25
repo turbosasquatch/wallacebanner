@@ -10,7 +10,6 @@
 
 .gallery-intro, .album { position: relative; z-index: 1; width: min(100%, 68rem); margin: 0 auto; }
 .gallery-intro { text-align: center; }
-.gallery-mark { width: 4.2rem; height: 4.2rem; margin: 0 auto 1.35rem; border-radius: 50%; }
 .gallery-intro h1 { margin: 0; color: var(--ink); font: 400 clamp(4rem, 9vw, 6.8rem)/.84 var(--display); letter-spacing: -.055em; }
 .gallery-divider { display: block; width: min(8.4rem, 37vw); height: auto; margin: 1.15rem auto .85rem; }
 .gallery-intro p { margin: 0; color: var(--ink); font: 400 clamp(1.12rem, 2.6vw, 1.4rem)/1.3 var(--display); }
