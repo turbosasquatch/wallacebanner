@@ -1,5 +1,5 @@
 const MAX_BYTES = 25 * 1024 * 1024;
-const MAX_UPLOADS_PER_HOUR = 100;
+const MAX_UPLOADS_PER_HOUR = 5000;
 const GALLERY_PAGE_SIZE = 100;
 const UPLOADS_CLOSE_AT = Date.parse("2026-09-01T00:00:00+01:00");
 const ALLOWED_TYPES = new Set([
