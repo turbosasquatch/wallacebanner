@@ -6,6 +6,7 @@ const loadMore = document.querySelector("#load-more");
 const viewer = document.querySelector("#media-viewer");
 const viewerContent = document.querySelector("#viewer-content");
 let nextCursor = null;
+const renderedIds = new Set();
 
 function isVideo(item) { return item.contentType.startsWith("video/"); }
 
@@ -47,7 +48,12 @@ function card(item) {
 }
 
 function render(items) {
-  grid.append(...items.map((item) => card(item)));
+  const newItems = items.filter((item) => {
+    if (!item.id || renderedIds.has(item.id)) return false;
+    renderedIds.add(item.id);
+    return true;
+  });
+  grid.append(...newItems.map((item) => card(item)));
 }
 
 async function getMoments(cursor = null) {

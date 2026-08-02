@@ -1,5 +1,6 @@
 const MAX_BYTES = 25 * 1024 * 1024;
 const MAX_UPLOADS_PER_HOUR = 100;
+const GALLERY_PAGE_SIZE = 100;
 const UPLOADS_CLOSE_AT = Date.parse("2026-09-01T00:00:00+01:00");
 const ALLOWED_TYPES = new Set([
   "image/jpeg", "image/png", "image/webp", "image/gif", "image/heic", "image/heif",
@@ -42,21 +43,72 @@ function galleryItem(request, object) {
     contentType: object.httpMetadata?.contentType === "application/octet-stream"
       ? contentTypeForKey(object.key)
       : object.httpMetadata?.contentType || contentTypeForKey(object.key),
-    uploadedAt: object.customMetadata?.uploadedAt || object.uploaded?.toISOString?.() || null
+    uploadedAt: object.customMetadata?.uploadedAt || object.uploaded?.toISOString?.() || null,
+    fingerprint: object.etag ? `${object.size}:${object.etag}` : object.key
   };
+}
+
+function compareGalleryItems(a, b) {
+  return (b.uploadedAt || "").localeCompare(a.uploadedAt || "") || b.id.localeCompare(a.id);
+}
+
+function encodeGalleryCursor(item) {
+  return btoa(JSON.stringify({ uploadedAt: item.uploadedAt, id: item.id }))
+    .replaceAll("+", "-")
+    .replaceAll("/", "_")
+    .replace(/=+$/, "");
+}
+
+function decodeGalleryCursor(value) {
+  if (!value) return null;
+  try {
+    const base64 = value.replaceAll("-", "+").replaceAll("_", "/");
+    const decoded = JSON.parse(atob(base64.padEnd(Math.ceil(base64.length / 4) * 4, "=")));
+    return typeof decoded.uploadedAt === "string" && typeof decoded.id === "string" ? decoded : null;
+  } catch {
+    return null;
+  }
+}
+
+async function listAllGalleryObjects(env) {
+  const objects = [];
+  let cursor;
+  do {
+    const listed = await env.UPLOADS.list({
+      prefix: "originals/",
+      cursor,
+      limit: 1000,
+      include: ["httpMetadata", "customMetadata"]
+    });
+    objects.push(...listed.objects);
+    cursor = listed.truncated ? listed.cursor : undefined;
+  } while (cursor);
+  return objects;
 }
 
 async function handleGallery(request, env) {
   const url = new URL(request.url);
-  const listed = await env.UPLOADS.list({
-    prefix: "originals/",
-    cursor: url.searchParams.get("cursor") || undefined,
-    limit: 100
-  });
-  const items = listed.objects
+  const cursor = decodeGalleryCursor(url.searchParams.get("cursor"));
+  const seen = new Set();
+  const allItems = (await listAllGalleryObjects(env))
     .map((object) => galleryItem(request, object))
-    .sort((a, b) => (b.uploadedAt || "").localeCompare(a.uploadedAt || ""));
-  return new Response(JSON.stringify({ items, nextCursor: listed.truncated ? listed.cursor : null }), {
+    .sort(compareGalleryItems)
+    .filter((item) => {
+      if (seen.has(item.fingerprint)) return false;
+      seen.add(item.fingerprint);
+      return true;
+    });
+  const start = cursor
+    ? allItems.findIndex((item) => compareGalleryItems(item, cursor) > 0)
+    : 0;
+  const pageStart = start < 0 ? allItems.length : start;
+  const items = allItems.slice(pageStart, pageStart + GALLERY_PAGE_SIZE);
+  const hasMore = pageStart + items.length < allItems.length;
+  const responseItems = items.map(({ fingerprint, ...item }) => item);
+  return new Response(JSON.stringify({
+    items: responseItems,
+    nextCursor: hasMore && items.length ? encodeGalleryCursor(items.at(-1)) : null
+  }), {
     headers: {
       "Cache-Control": "no-store",
       "Content-Type": "application/json; charset=utf-8",
