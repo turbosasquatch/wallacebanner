@@ -22,8 +22,24 @@
 .gallery-card img, .gallery-card video { display: block; width: 100%; height: auto; object-fit: contain; background: var(--soft-sage); transition: transform 360ms ease; }
 .gallery-card:hover img, .gallery-card:focus-visible img { transform: scale(1.035); }
 .video-label { position: absolute; right: .6rem; bottom: .6rem; padding: .38rem .55rem; color: var(--paper); background: rgba(39, 51, 50, .78); font: 600 .58rem/1 var(--ui); letter-spacing: .08em; text-transform: uppercase; }
-.load-more { display: block; margin: 1.25rem auto 0; padding: .85rem 1.2rem; border: 1px solid rgba(89, 101, 73, .45); border-radius: .2rem; color: var(--moss); background: rgba(255,255,255,.4); cursor: pointer; font: 600 .65rem/1 var(--ui); letter-spacing: .11em; text-transform: uppercase; }
-.load-more:hover, .load-more:focus-visible { color: var(--paper); background: var(--moss); }
+
+.gallery-pagination { margin-top: clamp(3rem, 6vw, 4.8rem); text-align: center; }
+.gallery-page-summary { margin: 0 0 1rem; color: var(--moss); font: 600 .63rem/1.4 var(--ui); letter-spacing: .16em; text-transform: uppercase; }
+.gallery-page-controls { display: flex; align-items: center; justify-content: center; gap: clamp(.45rem, 1.2vw, 1rem); min-height: 3rem; }
+.gallery-page-action, .gallery-page-number { position: relative; display: inline-flex; min-width: 2.75rem; min-height: 2.75rem; align-items: center; justify-content: center; padding: 0; border: 0; color: var(--moss); background: transparent; cursor: pointer; }
+.gallery-page-action { gap: .65rem; min-width: 7rem; font: 600 .62rem/1 var(--ui); letter-spacing: .16em; text-transform: uppercase; }
+.gallery-page-action svg { width: 2rem; height: .75rem; overflow: visible; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.2; }
+.gallery-page-action:hover, .gallery-page-action:focus-visible, .gallery-page-number:hover, .gallery-page-number:focus-visible { color: var(--coral); }
+.gallery-page-action:focus-visible, .gallery-page-number:focus-visible { outline: 2px solid var(--coral); outline-offset: .2rem; }
+.gallery-page-action:disabled { opacity: .28; cursor: default; }
+.gallery-page-action:disabled:hover { color: var(--moss); }
+.gallery-page-list { display: flex; align-items: center; justify-content: center; gap: .15rem; }
+.gallery-page-number { font: 500 .72rem/1 var(--ui); }
+.gallery-page-number[aria-current="page"] { color: var(--moss); font: 400 1.9rem/1 var(--display); cursor: default; }
+.gallery-page-number[aria-current="page"]::after { position: absolute; right: .75rem; bottom: .15rem; left: .75rem; height: 2px; background: var(--coral); content: ""; }
+.gallery-page-ellipsis { width: 1.7rem; color: var(--moss); font: 500 .72rem/1 var(--ui); }
+.gallery-page-mobile { display: none; color: var(--moss); font: 400 1.35rem/1 var(--display); white-space: nowrap; }
+.gallery-pagination[aria-busy="true"] .gallery-page-controls { opacity: .45; pointer-events: none; }
 
 .gallery-sprig { position: absolute; z-index: 0; width: clamp(22rem, 49vw, 43rem); opacity: .38; pointer-events: none; }
 .gallery-sprig-left { top: 7.5rem; left: clamp(-28rem, -19vw, -11rem); transform: rotate(20deg); }
@@ -35,4 +51,13 @@
 .close-viewer { position: absolute; top: .85rem; right: 1rem; padding: .4rem; border: 0; color: var(--paper); background: transparent; cursor: pointer; font: 600 .64rem/1 var(--ui); letter-spacing: .1em; text-transform: uppercase; }
 
 @media (max-width: 700px) { .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .72rem; } }
+@media (max-width: 600px) {
+  .gallery-page-controls { display: grid; grid-template-columns: 1fr auto 1fr; gap: .35rem; }
+  .gallery-page-list { display: none; }
+  .gallery-page-mobile { display: block; }
+  .gallery-page-action { min-width: 0; gap: .35rem; }
+  .gallery-page-action:first-child { justify-self: start; }
+  .gallery-page-action:last-child { justify-self: end; }
+  .gallery-page-action svg { width: 1.35rem; }
+}
 @media (max-width: 430px) { .gallery-grid { grid-template-columns: 1fr; } .gallery-main { padding-inline: 1rem; } }

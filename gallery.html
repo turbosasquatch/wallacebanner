@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&amp;family=Montserrat:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css?v=20260725-2">
-    <link rel="stylesheet" href="gallery.css?v=20260802-2">
-    <script src="gallery.js?v=20260802-1" defer></script>
+    <link rel="stylesheet" href="gallery.css?v=20260803-1">
+    <script src="gallery.js?v=20260803-1" defer></script>
   </head>
   <body class="gallery-page">
     <a class="skip-link" href="#main-content">Skip to photo album</a>
@@ -38,9 +38,12 @@
       </section>
 
       <section class="album" aria-label="Shared party photos and videos">
-        <div id="gallery-status" class="gallery-status" role="status" aria-live="polite">Gathering the moments…</div>
+        <div id="gallery-status" class="gallery-status" role="status" aria-live="polite" tabindex="-1">Gathering the moments…</div>
         <div id="gallery-grid" class="gallery-grid"></div>
-        <button id="load-more" class="load-more" type="button" hidden>Load more moments</button>
+        <nav id="gallery-pagination" class="gallery-pagination" aria-label="Gallery pages" hidden>
+          <p id="gallery-page-summary" class="gallery-page-summary"></p>
+          <div id="gallery-page-controls" class="gallery-page-controls"></div>
+        </nav>
       </section>
       <img class="gallery-sprig gallery-sprig-right" src="assets/wedding-sprig-sage.png" alt="" width="760" height="296" aria-hidden="true">
     </main>
