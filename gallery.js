@@ -1,5 +1,7 @@
-const GALLERY_API = "https://claire-george-party-uploads.claire-george-wedding-2026.workers.dev";
-const PAGE_SIZE = 30;
+const GALLERY_API = "https://media.streamvaults.co.uk";
+const PAGE_SIZE = 18;
+const EAGER_COUNT = 6;
+const MEDIA_TIMEOUT_MS = 15000;
 
 const album = document.querySelector(".album");
 const status = document.querySelector("#gallery-status");
@@ -9,39 +11,100 @@ const pageSummary = document.querySelector("#gallery-page-summary");
 const pageControls = document.querySelector("#gallery-page-controls");
 const viewer = document.querySelector("#media-viewer");
 const viewerContent = document.querySelector("#viewer-content");
-let moments = [];
+
+const pageCache = new Map();
+const cursors = new Map([[1, null]]);
 let currentPage = 1;
+let totalCount = 0;
 let isChangingPage = false;
+let lastFocusRefresh = Date.now();
 
 function isVideo(item) { return item.contentType.startsWith("video/"); }
 
-function mediaElement(item, { controls = false, eager = false } = {}) {
-  const element = document.createElement(isVideo(item) ? "video" : "img");
-  element.src = item.url;
-  if (isVideo(item)) {
-    element.controls = controls;
-    element.preload = eager ? "metadata" : "none";
-    element.playsInline = true;
-    element.muted = !controls;
-  } else {
-    element.alt = "Shared celebration moment";
-    element.loading = eager ? "eager" : "lazy";
-    element.decoding = "async";
+function errorNotice(text) {
+  const notice = document.createElement("span");
+  notice.className = "gallery-card-error";
+  notice.textContent = text;
+  return notice;
+}
+
+function watchMedia(element, cardElement) {
+  const timer = window.setTimeout(() => {
+    cardElement.classList.add("has-error");
+    if (!cardElement.querySelector(".gallery-card-error")) cardElement.append(errorNotice("Preview unavailable · Open original"));
+  }, MEDIA_TIMEOUT_MS);
+  const finish = (failed = false) => {
+    window.clearTimeout(timer);
+    if (failed) {
+      cardElement.classList.add("has-error");
+      if (!cardElement.querySelector(".gallery-card-error")) cardElement.append(errorNotice("Preview unavailable · Open original"));
+      return;
+    }
+    cardElement.classList.remove("has-error");
+    cardElement.classList.add("is-loaded");
+    cardElement.querySelector(".gallery-card-error")?.remove();
+  };
+  element.addEventListener("load", () => finish(false), { once: true });
+  element.addEventListener("error", () => finish(true), { once: true });
+}
+
+function imagePreview(item, eager, cardElement) {
+  const image = document.createElement("img");
+  image.src = item.variants[800];
+  image.srcset = `${item.variants[480]} 480w, ${item.variants[800]} 800w, ${item.variants[1200]} 1200w`;
+  image.sizes = "(max-width: 430px) calc(100vw - 2rem), (max-width: 700px) calc(50vw - 1.6rem), min(33vw - 2rem, 352px)";
+  image.alt = "Shared celebration moment";
+  image.loading = eager ? "eager" : "lazy";
+  image.decoding = "async";
+  image.fetchPriority = eager ? "high" : "auto";
+  watchMedia(image, cardElement);
+  return image;
+}
+
+function videoPreview(item, eager, cardElement) {
+  if (!item.posterUrl) {
+    const placeholder = document.createElement("span");
+    placeholder.className = "video-placeholder";
+    placeholder.setAttribute("aria-hidden", "true");
+    placeholder.textContent = "▶";
+    cardElement.classList.add("is-loaded");
+    return placeholder;
   }
-  return element;
+  const image = document.createElement("img");
+  image.src = item.posterUrl;
+  image.alt = "Video preview";
+  image.loading = eager ? "eager" : "lazy";
+  image.decoding = "async";
+  image.fetchPriority = eager ? "high" : "auto";
+  watchMedia(image, cardElement);
+  return image;
 }
 
 function openViewer(item) {
-  viewerContent.replaceChildren(mediaElement(item, { controls: true, eager: true }));
+  let element;
+  if (isVideo(item)) {
+    element = document.createElement("video");
+    element.controls = true;
+    element.preload = "none";
+    element.playsInline = true;
+    if (item.posterUrl) element.poster = item.posterUrl;
+  } else {
+    element = document.createElement("img");
+    element.alt = "Shared celebration moment";
+    element.decoding = "async";
+  }
+  element.src = item.originalUrl;
+  viewerContent.replaceChildren(element);
   viewer.showModal();
 }
 
-function card(item, { eager = false } = {}) {
+function card(item, index) {
   const button = document.createElement("button");
   button.type = "button";
   button.className = "gallery-card";
   button.setAttribute("aria-label", `Open ${isVideo(item) ? "video" : "photo"}`);
-  button.append(mediaElement(item, { eager }));
+  const eager = index < EAGER_COUNT;
+  button.append(isVideo(item) ? videoPreview(item, eager, button) : imagePreview(item, eager, button));
   if (isVideo(item)) {
     const label = document.createElement("span");
     label.className = "video-label";
@@ -52,52 +115,36 @@ function card(item, { eager = false } = {}) {
   return button;
 }
 
-function mediaReady(element) {
-  if (element instanceof HTMLImageElement) {
-    return element.decode ? element.decode().catch(() => {}) : Promise.resolve();
-  }
-  if (element.readyState >= 1) return Promise.resolve();
-  element.load();
-  return Promise.race([
-    new Promise((resolve) => {
-      element.addEventListener("loadedmetadata", resolve, { once: true });
-      element.addEventListener("error", resolve, { once: true });
-    }),
-    new Promise((resolve) => window.setTimeout(resolve, 8000))
-  ]);
-}
-
 async function getMoments(cursor = null) {
   const endpoint = new URL("/gallery", GALLERY_API);
   if (cursor) endpoint.searchParams.set("cursor", cursor);
-  const response = await fetch(endpoint, { headers: { Accept: "application/json" } });
-  if (!response.ok) throw new Error("The album could not be loaded.");
+  const response = await fetch(endpoint, { cache: "no-store", headers: { Accept: "application/json" } });
+  if (!response.ok) throw new Error("The album could not be loaded. Please try again.");
   return response.json();
-}
-
-async function getAllMoments() {
-  const itemsById = new Map();
-  const seenCursors = new Set();
-  let cursor = null;
-  do {
-    const data = await getMoments(cursor);
-    data.items.forEach((item) => {
-      if (item.id && !itemsById.has(item.id)) itemsById.set(item.id, item);
-    });
-    if (!data.nextCursor) break;
-    if (seenCursors.has(data.nextCursor)) throw new Error("The album could not be loaded.");
-    seenCursors.add(data.nextCursor);
-    cursor = data.nextCursor;
-  } while (cursor);
-  return [...itemsById.values()].sort((a, b) => {
-    const timeDifference = Date.parse(b.uploadedAt || 0) - Date.parse(a.uploadedAt || 0);
-    return timeDifference || b.id.localeCompare(a.id);
-  });
 }
 
 function pageFromUrl() {
   const value = Number.parseInt(new URL(window.location.href).searchParams.get("page") || "1", 10);
   return Number.isSafeInteger(value) && value > 0 ? value : 1;
+}
+
+async function ensurePage(page, { refresh = false } = {}) {
+  if (refresh) {
+    pageCache.clear();
+    cursors.clear();
+    cursors.set(1, null);
+  }
+  if (pageCache.has(page)) return pageCache.get(page);
+  for (let number = 1; number <= page; number += 1) {
+    if (pageCache.has(number)) continue;
+    if (!cursors.has(number)) throw new Error("That gallery page is no longer available.");
+    const data = await getMoments(cursors.get(number));
+    pageCache.set(number, data);
+    if (data.nextCursor) cursors.set(number + 1, data.nextCursor);
+    totalCount = Number(data.totalCount || 0);
+    if (!data.nextCursor && number < page) throw new Error("That gallery page is no longer available.");
+  }
+  return pageCache.get(page);
 }
 
 function pageTokens(page, pageCount) {
@@ -131,12 +178,11 @@ function actionButton(label, targetPage, direction, disabled) {
   return button;
 }
 
-function renderPagination() {
-  const pageCount = Math.ceil(moments.length / PAGE_SIZE);
+function renderPagination(itemCount) {
+  const pageCount = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
   const firstItem = (currentPage - 1) * PAGE_SIZE + 1;
-  const lastItem = Math.min(currentPage * PAGE_SIZE, moments.length);
-  pageSummary.textContent = `Showing ${firstItem}–${lastItem} of ${moments.length} moments`;
-
+  const lastItem = firstItem + itemCount - 1;
+  pageSummary.textContent = `Showing ${firstItem}–${lastItem} of ${totalCount} moments`;
   const pageList = document.createElement("span");
   pageList.className = "gallery-page-list";
   pageTokens(currentPage, pageCount).forEach((token) => {
@@ -160,7 +206,6 @@ function renderPagination() {
     }
     pageList.append(button);
   });
-
   const mobilePage = document.createElement("span");
   mobilePage.className = "gallery-page-mobile";
   mobilePage.textContent = `${currentPage} / ${pageCount}`;
@@ -174,50 +219,42 @@ function renderPagination() {
   pagination.hidden = pageCount <= 1;
 }
 
-function updateUrl(page, { replace = false } = {}) {
+function updateUrl(page, replace = false) {
   const url = new URL(window.location.href);
   if (page === 1) url.searchParams.delete("page");
   else url.searchParams.set("page", page);
   window.history[replace ? "replaceState" : "pushState"]({}, "", url);
 }
 
-async function showPage(page, { updateHistory = false, replaceHistory = false, moveToGallery = false } = {}) {
-  if (isChangingPage || !moments.length) return;
-  const pageCount = Math.ceil(moments.length / PAGE_SIZE);
-  const nextPage = Math.min(Math.max(page, 1), pageCount);
+async function showPage(page, { updateHistory = false, replaceHistory = false, moveToGallery = false, refresh = false } = {}) {
+  if (isChangingPage) return;
   isChangingPage = true;
   pagination.setAttribute("aria-busy", "true");
-  status.textContent = `Gathering page ${nextPage}…`;
-  const pageItems = moments.slice((nextPage - 1) * PAGE_SIZE, nextPage * PAGE_SIZE);
-  const cards = pageItems.map((item) => card(item, { eager: true }));
-  await Promise.all(cards.map((element) => mediaReady(element.querySelector("img, video"))));
-  grid.replaceChildren(...cards);
-  currentPage = nextPage;
-  renderPagination();
-  pagination.removeAttribute("aria-busy");
   status.classList.remove("is-error");
-  status.textContent = "";
-  if (updateHistory || replaceHistory) updateUrl(currentPage, { replace: replaceHistory });
-  isChangingPage = false;
-  if (moveToGallery) {
-    album.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
-    status.focus({ preventScroll: true });
-  }
-}
-
-async function loadGallery() {
+  status.textContent = `Gathering page ${page}…`;
   try {
-    moments = await getAllMoments();
-    if (!moments.length) {
+    const data = await ensurePage(page, { refresh });
+    if (!data.items.length && page === 1) {
+      grid.replaceChildren();
+      pagination.hidden = true;
       status.textContent = "The album is waiting for its first moment.";
       return;
     }
-    const requestedPage = pageFromUrl();
-    const pageCount = Math.ceil(moments.length / PAGE_SIZE);
-    await showPage(Math.min(requestedPage, pageCount), { replaceHistory: requestedPage > pageCount });
+    currentPage = page;
+    grid.replaceChildren(...data.items.map((item, index) => card(item, index)));
+    renderPagination(data.items.length);
+    status.textContent = "";
+    if (updateHistory || replaceHistory) updateUrl(currentPage, replaceHistory);
+    if (moveToGallery) {
+      album.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+      status.focus({ preventScroll: true });
+    }
   } catch (error) {
     status.classList.add("is-error");
     status.textContent = error.message;
+  } finally {
+    pagination.removeAttribute("aria-busy");
+    isChangingPage = false;
   }
 }
 
@@ -227,7 +264,12 @@ pageControls.addEventListener("click", (event) => {
   showPage(Number(button.dataset.page), { updateHistory: true, moveToGallery: true });
 });
 window.addEventListener("popstate", () => showPage(pageFromUrl(), { moveToGallery: true }));
+window.addEventListener("focus", () => {
+  if (currentPage !== 1 || Date.now() - lastFocusRefresh < 15000) return;
+  lastFocusRefresh = Date.now();
+  showPage(1, { refresh: true, replaceHistory: currentPage !== 1 });
+});
 document.querySelector("#close-viewer").addEventListener("click", () => viewer.close());
 viewer.addEventListener("click", (event) => { if (event.target === viewer) viewer.close(); });
 viewer.addEventListener("close", () => viewerContent.replaceChildren());
-loadGallery();
+showPage(pageFromUrl(), { replaceHistory: false });

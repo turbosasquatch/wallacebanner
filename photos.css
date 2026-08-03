@@ -111,6 +111,22 @@
   transform: translateY(-2px);
 }
 
+.uploaded-gallery-link {
+  display: inline-flex;
+  min-height: 2.8rem;
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: center;
+  color: var(--moss);
+  font: 600 .68rem/1 var(--ui);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .3rem;
+}
+
+.uploaded-gallery-link[hidden] { display: none; }
+
 .upload-button img {
   width: 2.05rem;
   height: 2.05rem;

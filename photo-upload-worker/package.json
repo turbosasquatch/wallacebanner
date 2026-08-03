@@ -2,6 +2,10 @@
   "name": "claire-george-party-uploads",
   "private": true,
   "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "check": "node --check src/index.js && wrangler deploy --dry-run --outdir /tmp/claire-gallery-worker-build"
+  },
   "devDependencies": {
     "wrangler": "^4.28.0"
   }
